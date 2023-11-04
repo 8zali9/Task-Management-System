@@ -1,0 +1,11 @@
+User-Task:
+A user can have multiple tasks (1-*)
+A task belongs to only one user (1-1)
+
+User-Group:
+A user can be a part of multiple groups (1-*)
+A group can have multiple users (1-*)
+
+Group-Task:
+A group can have multiple tasks (1-*)
+A task belongs to only one group (1-1)

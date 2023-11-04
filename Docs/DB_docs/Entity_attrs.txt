@@ -1,0 +1,26 @@
+User{
+    User_ID [PK] (int)
+    User_name (varchar)
+    User_email (varchar)
+    User_password (varchar)
+}
+
+Task{
+    Task_ID [PK] (int)
+    Task_name (varchar)
+    Task_detail (varchar)
+
+    -User_ID [FK] - from Users
+}
+
+Team{
+    Team_ID [PK] (int)
+    Team_name (varchar)
+    Team_motive (varchar)
+    -Team_Supervisor_name [FK] - from Users
+}
+
+Link{
+    User_ID [FK] [PK]
+    Team_ID [FK] [PK]
+}

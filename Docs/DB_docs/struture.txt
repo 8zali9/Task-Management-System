@@ -1,0 +1,14 @@
+Task Management System:
+The System will comprise of the following-
+
+Basic features- (Main Focus) :
+1. System will have Users who can do the following with the tasks-
+    see, create, update, delete.
+2. Users can mark their tasks as complete or incomplete.
+3. Users can see the overall progress of the tasks.
+
+Advanced features- (Optional) :
+1. User Authentication- User Profiles.
+2. User grouping- which will enable the grouped users to play with tasks.
+3. Check Marks on sub-tasks of a single task- providing track of the progress of each task.
+4. The one who makes group- 'Task Supr.' (Supervisor)- can manage the roles of other members.
