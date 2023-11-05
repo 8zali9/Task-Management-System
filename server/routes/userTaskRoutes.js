@@ -12,19 +12,19 @@ const {
 // @desc    Get all tasks of a user
 router.get("/:id/allTasks", getAllTasks);
 
-// @route   POST /api/usertasks/:id/getTask/:id
+// @route   GET /api/usertasks/:id/getTask/:id
 // @desc    Get a single task of a user
-router.post("/:id/getTask/:id", getTask);
+router.get("/:id/getTask/:id", getTask);
 
-// @route   POST /api/usertasks/
+// @route   POST /api/usertasks/:id
 // @desc    Create a task
-router.get("/", addTask);
+router.post("/:id", addTask);
 
-// @route   PUT /api/usertasks/:id
+// @route   PUT /api/usertasks/:id/getTask/:id
 // @desc    Update a task
 router.put("/:id", updateTask);
 
-// @route   DELETE /api/usertasks/:id
+// @route   DELETE /api/usertasks/:id/getTask/:id
 // @desc    Delete a task
 router.delete("/:id", deleteTask);
 
