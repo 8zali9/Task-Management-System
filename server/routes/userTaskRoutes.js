@@ -1,3 +1,8 @@
+/* !!! 
+  user id -> uid
+  task id -> tid
+*/
+
 const express = require("express");
 const router = express.Router();
 const {
@@ -8,24 +13,24 @@ const {
   deleteTask,
 } = require("../controllers/userTaskControllers");
 
-// @route   GET /api/usertasks/:id/allTasks
+// @route   GET /api/usertasks/:uid
 // @desc    Get all tasks of a user
-router.get("/:id/allTasks", getAllTasks);
+router.get("/:uid", getAllTasks);
 
-// @route   GET /api/usertasks/:id/getTask/:id
+// @route   GET /api/usertasks/:uid/:tid
 // @desc    Get a single task of a user
-router.get("/:id/getTask/:id", getTask);
+router.get("/:uid/:tid", getTask);
 
-// @route   POST /api/usertasks/:id
+// @route   POST /api/usertasks/:uid
 // @desc    Create a task
-router.post("/:id", addTask);
+router.post("/:uid", addTask);
 
-// @route   PUT /api/usertasks/:id/getTask/:id
+// @route   PUT /api/usertasks/:uid/:tid
 // @desc    Update a task
-router.put("/:id", updateTask);
+router.put("/:uid/:tid", updateTask);
 
-// @route   DELETE /api/usertasks/:id/getTask/:id
+// @route   DELETE /api/usertasks/:uid/:tid
 // @desc    Delete a task
-router.delete("/:id", deleteTask);
+router.delete("/:uid/:tid", deleteTask);
 
 module.exports = router;

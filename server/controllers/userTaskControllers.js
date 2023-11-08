@@ -1,3 +1,8 @@
+/* !!! 
+  user id -> uid
+  task id -> tid
+*/
+
 const mysql2 = require("mysql2");
 require("dotenv").config();
 const db = require("../config/connect_db");
@@ -9,31 +14,29 @@ const {
   qDeleteTask,
 } = require("../sql/userTaskQueries");
 
-// @route   GET /api/usertasks/:id/allTasks
+// @route   GET /api/usertasks/:uid
 // @desc    Get all tasks of a user
 const getAllTasks = async (req, res) => {
-  const userID = req.params.id;
+  const userID = req.params.uid;
 
-  db.query(qGetAllTasks),
-    [userID],
-    (err, result) => {
-      if (err) {
-        throw new Error();
+  db.query(qGetAllTasks, [userID], (err, result) => {
+    if (err) {
+      throw new Error();
+    } else {
+      if (result.length === 0) {
+        res.status(404).json({ message: "Tasks doesnot exist." });
       } else {
-        if (result.length === 0) {
-          res.status(404).json({ message: "Tasks doesnot exist." });
-        } else {
-          res.status(200).json(result);
-        }
+        res.status(200).json(result);
       }
-    };
+    }
+  });
 };
 
-// @route   GET /api/usertasks/:id/getTask/:id
+// @route   GET /api/usertasks/:uid/:tid
 // @desc    Get a single task of a user
 const getTask = async (req, res) => {
-  const userID = req.params.id;
-  const taskID = req.params.id;
+  const userID = req.params.uid;
+  const taskID = req.params.tid;
 
   db.query(qGetTask, [userID, taskID], (err, result) => {
     if (err) {
@@ -48,14 +51,15 @@ const getTask = async (req, res) => {
   });
 };
 
-// @route   POST /api/usertasks/:id
+// @route   POST /api/usertasks/:uid
 // @desc    Create a task
 const addTask = async (req, res) => {
-  const userID = req.params.id;
+  const userID = req.params.uid;
   const { taskID, taskName, taskDetails } = req.body;
 
   db.query(qAddTask, [taskID, taskName, taskDetails, userID], (err, result) => {
     if (err) {
+      console.log(err);
       res.status(400).json({ error: "Cannot add the task." });
     } else {
       res.status(201).json({
@@ -68,11 +72,11 @@ const addTask = async (req, res) => {
   });
 };
 
-// @route   PUT /api/usertasks/:id/getTask/:id
+// @route   PUT /api/usertasks/:uid/:tid
 // @desc    Update a task
 const updateTask = async (req, res) => {
-  const userID = req.params.id;
-  const taskID = req.params.id;
+  const userID = req.params.uid;
+  const taskID = req.params.tid;
   const { taskName, taskDetails } = req.body;
 
   db.query(
@@ -92,11 +96,11 @@ const updateTask = async (req, res) => {
   );
 };
 
-// @route   DELETE /api/usertasks/:id/getTask/:id
+// @route   DELETE /api/usertasks/:uid/:tid
 // @desc    Delete a task
 const deleteTask = async (req, res) => {
-  const userID = req.params.id;
-  const taskID = req.params.id;
+  const userID = req.params.uid;
+  const taskID = req.params.tid;
 
   db.query(qDeleteTask, [taskID, userID], (err, result) => {
     if (err) {
