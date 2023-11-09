@@ -1,0 +1,121 @@
+User SQL Queries (user.sql):
+---------------------------
+
+1. Get a Single User:
+   - Description: Retrieve information about a single user based on their userID.
+   - SQL Query:
+     ```sql
+     SELECT userID, userName, userEmail
+     FROM accountUser
+     WHERE userID = ?
+     ```
+
+2. Create a User:
+   - Description: Insert a new user into the 'accountUser' table with provided information.
+   - SQL Query:
+     ```sql
+     INSERT INTO accountUser (userID, userName, userEmail, userPassword)
+     VALUES (?, ?, ?, ?)
+     ```
+
+3. Update User Credentials:
+   - Description: Update user details (userName, userEmail, userPassword) based on the userID.
+   - SQL Query:
+     ```sql
+     UPDATE accountUser
+     SET userName = ?,
+         userEmail = ?,
+         userPassword = ?
+     WHERE userID = ?
+     ```
+
+4. Delete User:
+   - Description: Delete a user from the 'accountUser' table based on their userID.
+   - SQL Query:
+     ```sql
+     DELETE FROM accountUser
+     WHERE userID = ?
+     ```
+
+5. Check Existence of a User:
+   - Description: Check if a user with a given userEmail exists, used for sign-in.
+   - SQL Query:
+     ```sql
+     SELECT userID, userName, userPassword
+     FROM accountUser u
+     WHERE userEmail = ?
+     ```
+
+User Controllers (userControllers.js):
+--------------------------------------
+
+1. Sign In User:
+   - Description: Authenticate and log in a user.
+   - Route: POST /api/user/signin
+   - Function: signInUser
+   - Request Parameters: userEmail, userPassword
+
+2. Sign Out User:
+   - Description: Log out or sign out a user.
+   - Route: POST /api/user/signout
+   - Function: signOutUser
+
+3. Get User:
+   - Description: Get user details by userID.
+   - Route: GET /api/user/:id
+   - Function: getUser
+   - Request Parameters: userID (in URL)
+
+4. Create User:
+   - Description: Register a new user.
+   - Route: POST /api/user
+   - Function: createUser
+   - Request Parameters: userID, userName, userEmail, userPassword
+
+5. Update User:
+   - Description: Update user details.
+   - Route: PUT /api/user/:id
+   - Function: updateUser
+   - Request Parameters: userID (in URL), userName, userEmail, userPassword
+
+6. Delete User:
+   - Description: Delete a user.
+   - Route: DELETE /api/user/:id
+   - Function: deleteUser
+   - Request Parameters: userID (in URL)
+
+User Routes (userRoutes.js):
+---------------------------
+
+1. Authenticate and Sign In a User:
+   - Route: POST /api/user/signin
+   - Controller: signInUser
+   - Description: Endpoint for user authentication and sign-in.
+
+2. Sign Out a User:
+   - Route: POST /api/user/signout
+   - Controller: signOutUser
+   - Description: Endpoint for user sign-out.
+
+3. Get User:
+   - Route: GET /api/user/:id
+   - Controller: getUser
+   - Middleware: protect (for authentication)
+   - Description: Endpoint to retrieve user information by userID.
+
+4. Create User:
+   - Route: POST /api/user
+   - Controller: createUser
+   - Description: Endpoint for user registration.
+
+5. Update User:
+   - Route: PUT /api/user/:id
+   - Controller: updateUser
+   - Middleware: protect (for authentication)
+   - Description: Endpoint to update user details by userID.
+
+6. Delete User:
+   - Route: DELETE /api/user/:id
+   - Controller: deleteUser
+   - Middleware: protect (for authentication)
+   - Description: Endpoint to delete a user by userID.

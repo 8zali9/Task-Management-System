@@ -1,0 +1,112 @@
+User Task SQL Queries (userTask.sql):
+-------------------------------------
+
+1. Get All Tasks:
+   - Description: Retrieve all tasks for a specific user.
+   - SQL Query:
+     ```sql
+     SELECT *
+     FROM task
+     WHERE userID = ?
+     ```
+
+2. Get a Single Task:
+   - Description: Retrieve a specific task for a user based on taskID and userID.
+   - SQL Query:
+     ```sql
+     SELECT *
+     FROM task
+     WHERE userID = ?
+         AND taskID = ?
+     ```
+
+3. Add a Task:
+   - Description: Insert a new task into the 'task' table with provided information.
+   - SQL Query:
+     ```sql
+     INSERT INTO task (taskID, taskName, taskDetails, userID)
+     VALUES (?, ?, ?, ?)
+     ```
+
+4. Update a Task:
+   - Description: Update an existing task's details.
+   - SQL Query:
+     ```sql
+     UPDATE task
+     SET taskID = ?,
+         taskName = ?,
+         taskDetails = ?,
+         userID = ?
+     ```
+
+5. Delete a Task:
+   - Description: Delete a task for a specific user based on taskID and userID.
+   - SQL Query:
+     ```sql
+     DELETE FROM task
+     WHERE taskID = ?
+         AND userID = ?
+     ```
+
+User Task Controllers (userTaskControllers.js):
+----------------------------------------------
+
+1. Get All Tasks:
+   - Description: Get all tasks for a user.
+   - Route: GET /api/usertasks/:uid
+   - Function: getAllTasks
+   - Request Parameters: userID (in URL)
+
+2. Get Single Task:
+   - Description: Get a specific task for a user.
+   - Route: GET /api/usertasks/:uid/:tid
+   - Function: getTask
+   - Request Parameters: userID (in URL), taskID (in URL)
+
+3. Create Task:
+   - Description: Create a new task for a user.
+   - Route: POST /api/usertasks/:uid
+   - Function: addTask
+   - Request Parameters: userID (in URL)
+   - Request Body: taskID, taskName, taskDetails
+
+4. Update Task:
+   - Description: Update an existing task for a user.
+   - Route: PUT /api/usertasks/:uid/:tid
+   - Function: updateTask
+   - Request Parameters: userID (in URL), taskID (in URL)
+   - Request Body: taskName, taskDetails
+
+5. Delete Task:
+   - Description: Delete a task for a user.
+   - Route: DELETE /api/usertasks/:uid/:tid
+   - Function: deleteTask
+   - Request Parameters: userID (in URL), taskID (in URL)
+
+User Task Routes (userTaskRoutes.js):
+--------------------------------------
+
+1. Get All Tasks:
+   - Route: GET /api/usertasks/:uid
+   - Controller: getAllTasks
+   - Description: Retrieve all tasks for a specific user.
+
+2. Get Single Task:
+   - Route: GET /api/usertasks/:uid/:tid
+   - Controller: getTask
+   - Description: Retrieve a specific task for a user.
+
+3. Create Task:
+   - Route: POST /api/usertasks/:uid
+   - Controller: addTask
+   - Description: Create a new task for a user.
+
+4. Update Task:
+   - Route: PUT /api/usertasks/:uid/:tid
+   - Controller: updateTask
+   - Description: Update an existing task for a user.
+
+5. Delete Task:
+   - Route: DELETE /api/usertasks/:uid/:tid
+   - Controller: deleteTask
+   - Description: Delete a task for a user.

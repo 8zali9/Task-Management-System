@@ -1,0 +1,6 @@
+For server:
+
+-> sql (query variables) -> 
+-> controllers (controller functions) -> 
+-> routes -> 
+-> server
