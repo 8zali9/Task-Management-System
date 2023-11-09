@@ -3,35 +3,37 @@ USE Task_Management_System;
 
 CREATE TABLE accountUser
 (
-    userID int primary key,
+    userID int primary key auto_increment,
     userName varchar (30),
     userEmail varchar(20),
     userPassword varchar(30)
 );
 
+CREATE TABLE workGroup
+(
+    workGroupID int primary key auto_increment,
+    workGroupName varchar(30),
+    workGroupMotive varchar(100),
+    workGroupLeadID int,
+    foreign key (workGroupLeadID) references accountUser(userID)
+);
+
 CREATE TABLE task
 (
-    taskID int primary key,
+    taskID int primary key auto_increment,
     taskName varchar(20),
     taskDetails varchar(100),
     userID int,
-    foreign key (userID) references accountUser(userID)
-);
-
-CREATE TABLE team
-(
-    teamID int primary key,
-    teamName varchar(30),
-    teamMotive varchar(100),
-    teamLeadID int,
-    foreign key (teamLeadID) references accountUser(userID)
-);
-
-CREATE TABLE link
-(
-    userID int,
-    teamID int,
-    primary key (userID, teamID),
     foreign key (userID) references accountUser(userID),
-    foreign key (teamID) references team(teamID)
+    workGroupID int,
+    foreign key (workGroupID) references workGroup(workGroupID)
+);
+
+CREATE TABLE workGroupMembership
+(
+	workGroupMembershipID int primary key auto_increment,
+    userID int,
+    workGroupID int,
+    foreign key (userID) references accountUser(userID),
+    foreign key (workGroupID) references workGroup(workGroupID)
 );
