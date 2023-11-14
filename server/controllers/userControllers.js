@@ -50,8 +50,8 @@ const signInUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @route   POST /api/user/login
-// @desc    Logout or signout user
+// @route   POST /api/user/signout
+// @desc    Sign out a user
 const signOutUser = (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
@@ -82,20 +82,21 @@ const getUser = (req, res) => {
 // @route   POST /api/user
 // @desc    create/register user
 const createUser = asyncHandler(async (req, res) => {
-  const { userID, userName, userEmail, userPassword } = req.body;
+  const { userName, userEmail, userPassword } = req.body;
 
   const hashedPassword = await hashPassword(userPassword); // hashing password
 
   db.query(
     qCreateUser,
-    [userID, userName, userEmail, hashedPassword],
+    [userName, userEmail, hashedPassword],
     (err, result) => {
       if (err) {
         res
           .status(400)
           .json({ error: "Cannot Register the user. Incorrect Credentials." });
       } else {
-        generateToken(res, userID); // generating token
+        const userID = result.userID;
+        generateToken(res); // generating token
         res.status(201).json({
           message: "User Registered Successfully.",
           userID,

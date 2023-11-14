@@ -55,16 +55,17 @@ const getTask = async (req, res) => {
 // @desc    Create a task
 const addTask = async (req, res) => {
   const userID = req.params.uid;
-  const { taskID, taskName, taskDetails } = req.body;
+  const { taskName, taskDetails } = req.body;
 
-  db.query(qAddTask, [taskID, taskName, taskDetails, userID], (err, result) => {
+  db.query(qAddTask, [taskName, taskDetails, userID], (err, result) => {
     if (err) {
       console.log(err);
       res.status(400).json({ error: "Cannot add the task." });
     } else {
+      const tID = result.taskID;
       res.status(201).json({
         message: "Task added.",
-        taskID,
+        tID,
         taskName,
         taskDetails,
       });

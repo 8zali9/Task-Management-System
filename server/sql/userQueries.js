@@ -9,8 +9,8 @@ const qGetUser = `
 
 // @desc    create a user
 const qCreateUser = `
-    insert into accountUser (userID, userName, userEmail, userPassword)
-    values (?, ?, ?, ?)
+    insert into accountUser (userName, userEmail, userPassword)
+    values (?, ?, ?)
 `;
 
 // @desc    update user credentials

@@ -10,4 +10,3 @@ where userID = 1 and workGroupID = 1;
 
 -- create a workGroup
 insert into workGroup ()
-
