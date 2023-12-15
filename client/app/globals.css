@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 35px;
+    margin-left: 35px;
+}
+
+a{
+    text-decoration: none;
+    /* color: rgba(255, 255, 255, 0.863); */
+    color: black;
+}
+
+button{
+    display: block;
+    background-color: transparent;
+    border: none;
+}
+
+.home-pg{
+    display: flex;
+    padding-top: 200px;
+}
+
+.brand-div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.brand-name{
+    font-size: 25px;
+}
+
+.nav-side{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    width: 150px;
+    height: 100%;
+    transition: 0.3s ease;
+}
+
+.navbar.shown{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    width: 150px;
+    margin-left: -120px;
+    transition: 0.3s ease;
+}
+
+.shown{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    width: 150px;
+    margin-left: 100px;
+    transition: 0.3s ease;
+}
+
