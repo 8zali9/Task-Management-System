@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {React, useState} from 'react'
-import { FaTasks, FaBars } from "react-icons/fa";
+import { FaTasks, FaBars, FaSignOutAlt } from "react-icons/fa";
 import { MdGroups, MdLightMode, MdNightsStay, MdAccountCircle } from "react-icons/md";
 
 export default function Header() {
@@ -35,26 +35,31 @@ export default function Header() {
             </div>
 
             <div className='nav-side'>
-                <button className={themeToggle ? 'dark-theme' : 'light-theme'} onClick={handleThemeToggle}>
-                    {themeToggle ? <MdNightsStay className='icon' /> : <MdLightMode className='icon' /> }
+                <button className={`theme-toggle ${themeToggle ? 'dark-theme' : 'light-theme'}`} onClick={handleThemeToggle}>
+                    {themeToggle ? <MdNightsStay className='dark-theme' /> : <MdLightMode className='light-theme' /> }
                 </button>
             </div>
         </nav>
 
         <div className='sidebar'>
             <div className={`navbar ${sidebarToggle ? 'shown' : ''}`}>
-                <Link className='nav-div' href='/'>
-                    <strong className='nav-link-name'>Profile</strong>
-                    <MdAccountCircle className='nav-icon' />
-                </Link>
-                <Link href='/' className='nav-div'>
-                    <strong className='nav-link-name'>Tasks</strong>
-                    <FaTasks className='nav-icon' />
-                </Link>
-                <Link href='/' className='nav-div'>
-                    <strong className='nav-link-name'>Groups</strong>
-                    <MdGroups className='nav-icon' />
-                </Link>
+                <div className='nav-up-links'>
+                    <Link className='nav-div' href='/'>
+                        <strong className='nav-link-name'>Profile</strong>
+                        <MdAccountCircle className='nav-icon' />
+                    </Link>
+                    <Link href='/' className='nav-div'>
+                        <strong className='nav-link-name'>Tasks</strong>
+                        <FaTasks className='nav-icon' />
+                    </Link>
+                    <Link href='/' className='nav-div'>
+                        <strong className='nav-link-name'>Groups</strong>
+                        <MdGroups className='nav-icon' />
+                    </Link>
+                </div>
+                <button className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
+                    <strong>{sidebarToggle ? <FaSignOutAlt className='nav-icon' /> : 'Logout'}</strong>
+                </button>
             </div>
         </div>
     </header>

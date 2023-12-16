@@ -23,8 +23,7 @@ nav{
 
 a{
     text-decoration: none;
-    /* color: rgba(255, 255, 255, 0.863); */
-    color:thistle;
+    color:white;
 }
 
 button{
@@ -55,7 +54,7 @@ button{
     align-items: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .nav-side{
@@ -65,18 +64,65 @@ button{
     gap: 20px;
 }
 
+.theme-toggle{
+    font-size: 20px;
+}
+
+.dark-theme{
+    color: white;
+}
+
+.light-theme{
+    color: #1b1420;
+}
+
 .navbar{
     display: flex;
     flex-direction: column;
     position: fixed;
     background-color: #3c2468b2;
-    width: 140px;
+    width: 145px;
     height: 100vh;
     transition: 0.3s ease;
-    gap: 30px;
     padding-top: 15px;
     padding-right: 10px;
     padding-left: 10px;
+    gap: 63vh;
+}
+
+.nav-up-links{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.signlog-btn{
+    display: flex;
+    background-color: #1b1420;
+    color: white;
+    border-radius: 4px;
+    height: 32px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+    font-size: 17px;
+}
+
+.signlog-btn:hover{
+    align-items: center;
+    border: 1px solid white;
+    background-color: white;
+    color: #1b1420;
+}
+
+.hide-navd-btn{
+    display: flex;
+    width: 20%;
+    margin-left: 120px;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 .navbar.shown{
@@ -90,7 +136,6 @@ button{
 .nav-div{
     display: flex;
     align-items: center;
-    gap: 50px;
     justify-content: space-between;
 }
 
