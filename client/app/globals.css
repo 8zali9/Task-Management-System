@@ -33,6 +33,7 @@ button{
 .home-pg{
     display: flex;
     padding-top: 200px;
+    margin-left: 100px;
 }
 
 .brand-div{
@@ -48,33 +49,51 @@ button{
 .nav-side{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile{
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .navbar{
     display: flex;
     flex-direction: column;
-    background-color: blue;
-    width: 150px;
-    height: 100%;
+    position: fixed;
+    background-color: #3c2468b2;
+    width: 190px;
+    height: 100vh;
     transition: 0.3s ease;
+    gap: 30px;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .navbar.shown{
-    display: flex;
-    flex-direction: column;
-    background-color: blue;
+    position: fixed;
+    background-color: #1b1420;
     width: 150px;
-    margin-left: -120px;
+    margin-left: -90px;
     transition: 0.3s ease;
 }
 
-.shown{
+.nav-div{
     display: flex;
-    flex-direction: column;
-    background-color: blue;
-    width: 150px;
-    margin-left: 100px;
-    transition: 0.3s ease;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-between;
 }
 
+.nav-link-name{
+    font-size: 15px;
+    color: white;
+}
+
+.nav-icon{
+    color: white;
+    font-size: 17px;
+}
