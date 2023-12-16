@@ -7,6 +7,8 @@ body {
 header{
     width: 100%;
     position: fixed;
+    background-color: #3c2468b2;
+    z-index: 1;
 }
 
 nav{
@@ -16,12 +18,13 @@ nav{
     align-items: center;
     margin-right: 35px;
     margin-left: 35px;
+    z-index: 1;
 }
 
 a{
     text-decoration: none;
     /* color: rgba(255, 255, 255, 0.863); */
-    color: black;
+    color:thistle;
 }
 
 button{
@@ -36,14 +39,23 @@ button{
     margin-left: 100px;
 }
 
+.sidebar-toggle-btn{
+    color: white;
+}
+
 .brand-div{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-
-.brand-name{
-    font-size: 25px;
+  
+.logo-tm {
+    height: 55px;
+    width: 90px;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
 }
 
 .nav-side{
@@ -53,31 +65,25 @@ button{
     gap: 20px;
 }
 
-.user-profile{
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
 .navbar{
     display: flex;
     flex-direction: column;
     position: fixed;
     background-color: #3c2468b2;
-    width: 190px;
+    width: 140px;
     height: 100vh;
     transition: 0.3s ease;
     gap: 30px;
     padding-top: 15px;
-    padding-left: 10px;
     padding-right: 10px;
+    padding-left: 10px;
 }
 
 .navbar.shown{
     position: fixed;
     background-color: #1b1420;
     width: 150px;
-    margin-left: -90px;
+    margin-left: -105px;
     transition: 0.3s ease;
 }
 

@@ -27,16 +27,14 @@ export default function Header() {
         <nav>
             <div className='brand-div'>
                 <button className="sidebar-toggle" onClick={handleSidebarToggle}>
-                    <FaBars />
+                    <FaBars className='sidebar-toggle-btn'/>
                 </button>
-                <Link className='brand-name' href='/'>TMS Home</Link>
+                <Link className='logo' href='/'>
+                    <img className='logo-tm' src="./logo.png" />
+                </Link>
             </div>
 
             <div className='nav-side'>
-                <Link className='user-profile' href='/'>
-                    <strong className='user-name'>User Profile</strong>
-                    <MdAccountCircle className='icon' />
-                </Link>
                 <button className={themeToggle ? 'dark-theme' : 'light-theme'} onClick={handleThemeToggle}>
                     {themeToggle ? <MdNightsStay className='icon' /> : <MdLightMode className='icon' /> }
                 </button>
@@ -45,12 +43,16 @@ export default function Header() {
 
         <div className='sidebar'>
             <div className={`navbar ${sidebarToggle ? 'shown' : ''}`}>
+                <Link className='nav-div' href='/'>
+                    <strong className='nav-link-name'>Profile</strong>
+                    <MdAccountCircle className='nav-icon' />
+                </Link>
                 <Link href='/' className='nav-div'>
-                    <strong className='nav-link-name'>My Tasks</strong>
+                    <strong className='nav-link-name'>Tasks</strong>
                     <FaTasks className='nav-icon' />
                 </Link>
                 <Link href='/' className='nav-div'>
-                    <strong className='nav-link-name'>My Groups</strong>
+                    <strong className='nav-link-name'>Groups</strong>
                     <MdGroups className='nav-icon' />
                 </Link>
             </div>
