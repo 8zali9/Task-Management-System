@@ -58,7 +58,7 @@ export default function Header() {
                     </Link>
                 </div>
                 <button className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
-                    <strong>{sidebarToggle ? <FaSignOutAlt className='nav-icon' /> : 'Logout'}</strong>
+                    <strong>{sidebarToggle ? <FaSignOutAlt className='signlog-icon' /> : 'Logout'}</strong>
                 </button>
             </div>
         </div>

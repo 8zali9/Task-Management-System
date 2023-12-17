@@ -148,3 +148,16 @@ button{
     color: white;
     font-size: 17px;
 }
+
+/* SMALL SCREENS */
+
+@media only screen and (max-width: 767px) {
+    nav{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .navbar.shown{
+        margin-left: -200px;
+    }
+}
