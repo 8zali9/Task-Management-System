@@ -32,12 +32,6 @@ button{
     border: none;
 }
 
-.home-pg{
-    display: flex;
-    padding-top: 200px;
-    margin-left: 100px;
-}
-
 .sidebar-toggle-btn{
     color: white;
 }
@@ -147,6 +141,82 @@ button{
 .nav-icon{
     color: white;
     font-size: 17px;
+}
+
+/* Home page */
+
+.home-pg{
+    display: flex;
+    padding-top: 200px;
+    margin-left: 100px;
+}
+
+/* Login page */
+
+.login-pg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 170px;
+}
+
+legend{
+    margin-bottom: 18px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #3c2468b2;
+    gap: 20px;
+    padding: 50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 4px;
+}
+
+.form-input{
+    border: 2px solid #3c2468b2;
+    padding: 8px;
+    height: 16px;
+    border-radius: 4px;
+    transition: 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #57217e;
+}
+
+.login-form-btn{
+    background-color: #1b1420;
+    color: white;
+    font-size: 17px;
+    height: 32px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid #1b1420;
+    transition: 0.2s ease;
+    margin-top: 10px;
+}
+
+.login-form-btn:hover{
+    background-color: white;
+    color: #1b1420;
+    border-color: #1b1420;
+}
+
+.not-have-acc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top: 1px solid #3c2468b2;
+}
+
+.nha-link{
+    color: #1b1420;
+    text-decoration: underline;
 }
 
 /* SMALL SCREENS */
