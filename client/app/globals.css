@@ -131,6 +131,14 @@ button{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: transparent;
+    transition: 0.5ms ease;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.nav-div:hover{
+    background-color: #ffffff13;
 }
 
 .nav-link-name{
@@ -229,5 +237,20 @@ legend{
 
     .navbar.shown{
         margin-left: -200px;
+    }
+
+    /* login pg */
+
+    .login-form{
+        border: none;
+    }
+
+    .not-have-acc{
+        align-items: center;
+    }
+
+    legend{
+        display: flex;
+        justify-content: center;
     }
 }
