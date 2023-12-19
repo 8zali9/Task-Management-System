@@ -57,10 +57,8 @@ export default function Header() {
                         <MdGroups className='nav-icon' />
                     </Link>
                 </div>
-                <Link href='/login'>
-                    <button className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
-                        <strong>{sidebarToggle ? <FaSignOutAlt className='signlog-icon' /> : 'Login'}</strong>
-                    </button>
+                <Link href='/login' className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
+                    <strong>{sidebarToggle ? <FaSignOutAlt className='signlog-icon' /> : 'Login'}</strong>
                 </Link>
             </div>
         </div>

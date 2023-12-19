@@ -81,13 +81,13 @@ button{
     padding-top: 15px;
     padding-right: 10px;
     padding-left: 10px;
-    gap: 63vh;
+    gap: 58vh;
 }
 
 .nav-up-links{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
 }
 
 .signlog-btn{
@@ -123,7 +123,7 @@ button{
     position: fixed;
     background-color: #1b1420;
     width: 150px;
-    margin-left: -105px;
+    margin-left: -96px;
     transition: 0.3s ease;
 }
 
@@ -133,7 +133,7 @@ button{
     justify-content: space-between;
     background-color: transparent;
     transition: 0.5ms ease;
-    padding: 8px;
+    padding: 10px;
     border-radius: 4px;
 }
 
