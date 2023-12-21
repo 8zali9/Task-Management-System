@@ -153,10 +153,10 @@ button{
 
 /* Home page */
 
-.home-pg{
+.home-pg, .profile-pg, .groups-pg, .tasks-pg{
     display: flex;
     padding-top: 200px;
-    margin-left: 100px;
+    margin-left: 300px;
 }
 
 /* Login page */

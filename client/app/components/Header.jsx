@@ -44,15 +44,15 @@ export default function Header() {
         <div className='sidebar'>
             <div className={`navbar ${sidebarToggle ? 'shown' : ''}`}>
                 <div className='nav-up-links'>
-                    <Link className='nav-div' href='/'>
+                    <Link href='/profile' className='nav-div'>
                         <strong className='nav-link-name'>Profile</strong>
                         <MdAccountCircle className='nav-icon' />
                     </Link>
-                    <Link href='/' className='nav-div'>
+                    <Link href='/tasks' className='nav-div'>
                         <strong className='nav-link-name'>Tasks</strong>
                         <FaTasks className='nav-icon' />
                     </Link>
-                    <Link href='/' className='nav-div'>
+                    <Link href='/groups' className='nav-div'>
                         <strong className='nav-link-name'>Groups</strong>
                         <MdGroups className='nav-icon' />
                     </Link>

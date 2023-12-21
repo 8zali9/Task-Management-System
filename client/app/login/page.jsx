@@ -1,9 +1,13 @@
 "use client"
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, {useState} from 'react'
+import { toast } from 'react-toastify';
 
 export default function Login() {
+  const router = useRouter()
+
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -15,10 +19,14 @@ export default function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userEmail, userPassword }),
     });
-
-    const data = await response.json();
-
-    // Enter into the account : Get user
+    
+    if (response.status === 201) {
+      router.push('/tasks')
+      toast.dark("Your TM Workspace")
+    }
+    else{
+      toast.dark("Incorrect Credentials")
+    }
   }
 
   return (
