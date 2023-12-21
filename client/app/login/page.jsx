@@ -4,26 +4,21 @@ import Link from 'next/link'
 import React, {useState} from 'react'
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   const handleAuthSubmit = async (e) => {
     e.preventDefault()
 
     const response = await fetch('http://localhost:2424/api/user/signin', {
       method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ email, password })
-    })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userEmail, userPassword }),
+    });
 
     const data = await response.json();
 
-    if (data.status === 201) {
-      console.log('Authed.')
-    }
-    else{
-      console.log('Not Auth')
-    }
+    // Enter into the account : Get user
   }
 
   return (
@@ -34,15 +29,15 @@ export default function Login() {
           required
           placeholder='Your Email'
           type='email'
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          onChange={(e) => setUserEmail(e.target.value)}
+          value={userEmail}
         />
         <input className='form-input'
           required
           placeholder='Your Password'
           type='password'
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
+          onChange={(e) => setUserPassword(e.target.value)}
+          value={userPassword}
         />
 
         <button type='submit' className='login-form-btn'>Login</button>

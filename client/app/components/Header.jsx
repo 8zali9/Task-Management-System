@@ -6,7 +6,7 @@ import { FaTasks, FaBars, FaSignOutAlt } from "react-icons/fa";
 import { MdGroups, MdLightMode, MdNightsStay, MdAccountCircle } from "react-icons/md";
 
 export default function Header() {
-    const [sidebarToggle, setSidebarToggle] = useState(false)
+    const [sidebarToggle, setSidebarToggle] = useState(true)
     const [themeToggle, setThemeToggle] = useState(false)
 
     const handleSidebarToggle = () => {
