@@ -11,7 +11,8 @@ export default function Header() {
     const [sidebarToggle, setSidebarToggle] = useState(true)
     const [themeToggle, setThemeToggle] = useState(false)
     const [synaptronToggle, setSynaptronToggle] = useState(false)
-    const [synSbToggle, setSynSbToggle] = useState(false)
+    const [chatContent, setChatContent] = useState([]);
+    const [userQuery, setUserQuery] = useState("");
 
     const handleSidebarToggle = () => {
         setSidebarToggle(!sidebarToggle)
@@ -30,29 +31,78 @@ export default function Header() {
         setSynaptronToggle(!synaptronToggle)
     }
 
-    const handleSynSbToggle = () => {
-        setSynSbToggle(!synSbToggle)
+    const handleChatContentFilling = async (e) => {
+        e.preventDefault()
+    
+        const response = await fetch('http://localhost:1231/',{
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({userQuery})
+        })
+    
+        const data = await response.json();
+        setChatContent(prevChatContent => [...prevChatContent, data]);
+        setUserQuery("")
     }
+
+    // function parseText(text) {
+    //     const lines = text.split(/\n+/); // Split text into lines
+    //     let parsedText = '';
+    
+    //     lines.forEach(line => {
+    //         const headings = line.match(/\*\*(.*?)\*\*/g); // Extract text within **
+    //         if (headings) {
+    //             headings.forEach(heading => {
+    //                 const headingText = heading.replace(/\*\*/g, ''); // Remove **
+    //                 parsedText += `${headingText}`; // Create heading
+    //             });
+    //         } else {
+    //             parsedText += `${line}`; // Create line
+    //         }
+    //     });
+    
+    //     return parsedText;
+    // }
 
   return (
     <header>
         <div className={`synaptron-chat ${synaptronToggle ? 'shown' : ''}`}>
             {synaptronToggle ? 
                 <div className='synaptron-chat-content'>
+
                     <div className='syn-div'>
                         <button className='syn-close' onClick={handleSynaptronToggle}>
                             <IoCloseOutline color='lightslategray' fontSize='30px'/>
                         </button>
                         <img className='logo-syn' src="./synaptron-logo.png" />
                     </div>
-                    <div className='synsb-div'>
-                        <input onClick={handleSynSbToggle}
-                        className={`syn-searchbar ${synSbToggle ? 'contract' : ''}`} 
+
+                    <div className='syn-content'>
+                        {/* <div>User-{userQuery}</div>
+                        <GiAtomicSlashes className='nav-icon' /> */}
+                        {/* {parseText(chatContent)} */}
+                        <div>
+                        {chatContent.map((item, index) => (
+                            <p key={index}>
+                                <GiAtomicSlashes color='lightslategrey' className='nav-icon' /><br></br>
+                                {item}
+                                <br /><br />
+                            </p>
+                        ))}
+                        </div>
+                    </div>
+
+                    <form onSubmit={handleChatContentFilling} className='synsb-div' id="synaptronInput">
+                        <input
+                        className='syn-searchbar'
                         type="text"
                         placeholder='synaptron'
+                        onChange={(e) => setUserQuery(e.target.value)}
+                        value={userQuery}
                         />
-                        <i className='synsb-below'>Synaptron - powered by Gemini-AI</i>
-                    </div>
+                        <button type='submit'></button>
+                        <i className='synsb-below'><GiAtomicSlashes className='nav-icon' />Synaptron - powered by Gemini-AI</i>
+                    </form>
                 </div>
              : 
             null}
