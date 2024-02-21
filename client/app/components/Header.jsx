@@ -96,7 +96,7 @@ export default function Header() {
                         <input
                         className='syn-searchbar'
                         type="text"
-                        placeholder='synaptron'
+                        placeholder='chat with synaptron'
                         onChange={(e) => setUserQuery(e.target.value)}
                         value={userQuery}
                         />

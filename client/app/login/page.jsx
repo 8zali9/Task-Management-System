@@ -2,10 +2,12 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, {useState} from 'react'
 import { toast } from 'react-toastify';
+import { AuthContext } from '../utils/TokenProvider'
+import { useState, useContext } from 'react';
 
 export default function Login() {
+  const { token, setToken } = useContext(AuthContext);
   const router = useRouter()
 
   const [userEmail, setUserEmail] = useState("");
@@ -18,11 +20,20 @@ export default function Login() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userEmail, userPassword }),
+      credentials: 'include'
     });
     
     if (response.status === 201) {
-      router.push('/tasks')
-      toast.dark("Your TM Workspace")
+      const data = await response.json();
+      const storedToken = document.cookie.split('; ').find(row => row.startsWith('jwt='));
+      if (storedToken) {
+          const fetchedTokenValue = storedToken.split('=')[1];
+          setToken(fetchedTokenValue);
+      }
+      console.log(data)
+
+      // router.push(`/profile/${data.userID}`);
+      toast.dark("Your TM Workspace");
     }
     else{
       toast.dark("Incorrect Credentials")

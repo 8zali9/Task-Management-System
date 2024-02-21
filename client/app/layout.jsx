@@ -3,6 +3,7 @@ import './globals.css'
 import Header from './components/Header'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TokenProvider } from './utils/TokenProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
         <ToastContainer />
-        {children}
+        <TokenProvider >
+          {children}
+        </TokenProvider>
       </body>
     </html>
   )

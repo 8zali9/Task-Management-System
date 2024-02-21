@@ -21,6 +21,11 @@ const protect = asyncHandler(async (req, res, next) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = await findUser(decoded.userID);
+      if (req.params.id && req.params.id != decoded.userID) {
+        return res.status(403).json({
+          error: "Forbidden. You don't have access to this resource.",
+        });
+      }
       next();
     } catch (error) {
       res.status(401).json({ error: "Unauthorized. Invalid Token." });

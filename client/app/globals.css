@@ -55,6 +55,12 @@ body {
     transition: 0.1s ease;
     margin-top: 0;
     color: lightgray;
+    padding-left: 10px;
+}
+
+input{
+    padding: 2px;
+    margin-left: 5px;
 }
 
 input:focus{
