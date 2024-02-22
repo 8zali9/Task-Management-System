@@ -25,14 +25,13 @@ export default function Login() {
     
     if (response.status === 201) {
       const data = await response.json();
+      localStorage.setItem('userID', data.userID);
       const storedToken = document.cookie.split('; ').find(row => row.startsWith('jwt='));
       if (storedToken) {
           const fetchedTokenValue = storedToken.split('=')[1];
-          setToken(fetchedTokenValue);
+          await setToken(fetchedTokenValue);
       }
-      console.log(data)
-
-      // router.push(`/profile/${data.userID}`);
+      router.push('/profile')
       toast.dark("Your TM Workspace");
     }
     else{
