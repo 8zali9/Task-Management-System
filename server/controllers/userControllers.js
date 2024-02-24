@@ -9,6 +9,7 @@ const {
   qGetUser,
   qCreateUser,
   qUpdateUser,
+  qUpdateUserWithoutPassword,
   qDeleteUser,
   qUserExistenceCheck,
 } = require("../sql/userQueries");
@@ -110,25 +111,35 @@ const createUser = asyncHandler(async (req, res) => {
 
 // @route   PUT /api/user/:id
 // @desc    update user
-const updateUser = asyncHandler((req, res) => {
+const updateUser = asyncHandler(async (req, res) => {
   const userToUpdate = req.params.id;
   const { userName, userEmail, userPassword } = req.body;
 
-  db.query(
-    qUpdateUser,
-    [userName, userEmail, userPassword, userToUpdate],
-    (err, result) => {
-      if (err) {
-        res.status(404).json({ error: "Cannot update the user." });
-      } else {
-        res.status(200).json({
-          message: "User Updated Successfully.",
-          userName,
-          userEmail,
-        });
-      }
+  let password;
+  let userInfoArray = [];
+  let querydb;
+
+  if (userPassword) {
+    password = await hashPassword(userPassword); // hashing password
+    userInfoArray.push(userName, userEmail, password, userToUpdate);
+    querydb = qUpdateUser;
+  } else {
+    userInfoArray.push(userName, userEmail, userToUpdate);
+    querydb = qUpdateUserWithoutPassword;
+  }
+
+  db.query(querydb, userInfoArray, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(404).json({ error: "Cannot update the user." });
+    } else {
+      res.status(200).json({
+        message: "User Updated Successfully.",
+        userName,
+        userEmail,
+      });
     }
-  );
+  });
 });
 
 // @route   DELETE /api/user/:id

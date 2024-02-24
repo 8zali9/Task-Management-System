@@ -2,11 +2,23 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
+import { IoMdAddCircleOutline } from "react-icons/io";
+import AddTask from '../components/AddTask'
+
+function fetchUserID(){
+  const userID = localStorage.getItem('userID')
+  return userID
+}
 
 export default function TasksPage() {
-  const userID = localStorage.getItem('userID')
   const { token } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
+  const [toggleAddTaskForm, setToggleAddTaskForm] = useState(false)
+  const userID = fetchUserID()
+
+  const handleFormToggle = () => {
+    setToggleAddTaskForm(!toggleAddTaskForm)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,19 +43,32 @@ export default function TasksPage() {
 
   if ((!Array.isArray(tasks)) || (tasks.length === 0)) {
     return (
-      <div className='User Doesnt exist'>Problem fetching details.</div>
+      <div className='tasks-pg'>
+      {toggleAddTaskForm && <AddTask />}
+      <div className='task-details'>
+        <div className='pg-head'>
+          <h3 className='pg-heading'>Tasks</h3>
+          <button onClick={handleFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
+        </div>
+      </div>
+    </div>
     );
   }
 
   return (
     <div className='tasks-pg'>
       <div className='task-details'>
+        <div className='pg-head'>
+          <h3 className='pg-heading'>Tasks</h3>
+          <button onClick={handleFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
+        </div>
         {tasks.map((task) => (
-          <div key={task.taskID}>
-            <p className='name'>Task Name: {task.taskName}</p>
-            <p className='details'>Details: {task.taskDetails}</p>
+          <div className='tasks-div' key={task.taskID}>
+            <p className='name'><b>{task.taskName}</b></p>
+            <p className='details'>{task.taskDetails}</p>
           </div>
         ))}
+        {toggleAddTaskForm && <AddTask className='add-task-form'/>}
       </div>
     </div>
   );

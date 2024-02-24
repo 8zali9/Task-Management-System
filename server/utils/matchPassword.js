@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 const matchPassword = async (enteredPassword, userPassword) => {
   if (enteredPassword !== null && enteredPassword !== undefined)

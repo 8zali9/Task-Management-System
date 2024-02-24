@@ -26,6 +26,8 @@ export default function Login() {
     if (response.status === 201) {
       const data = await response.json();
       localStorage.setItem('userID', data.userID);
+      localStorage.setItem('userName', data.userName);
+      localStorage.setItem('userEmail', data.userEmail);
       const storedToken = document.cookie.split('; ').find(row => row.startsWith('jwt='));
       if (storedToken) {
           const fetchedTokenValue = storedToken.split('=')[1];

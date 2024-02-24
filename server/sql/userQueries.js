@@ -22,6 +22,14 @@ const qUpdateUser = `
     where userID = ?
 `;
 
+// @desc    update user credentials without password
+const qUpdateUserWithoutPassword = `
+    update accountUser
+    set userName = ?,
+        userEmail = ?
+    where userID = ?
+`;
+
 // @desc    delete user
 const qDeleteUser = `
     delete from accountUser
@@ -39,6 +47,7 @@ module.exports = {
   qGetUser,
   qCreateUser,
   qUpdateUser,
+  qUpdateUserWithoutPassword,
   qDeleteUser,
   qUserExistenceCheck, // used in Sign In
 };
