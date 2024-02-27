@@ -3,16 +3,22 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
 import UpdateProfile from '../components/UpdateProfile';
+import Logout from '../components/Logout'
 import { FaRegEdit } from "react-icons/fa";
 
 export default function ProfilePage() {
   const userID = localStorage.getItem('userID')
   const [userDetails, setUserDetails] = useState([]);
   const [toggleUpdForm, setToggleUpdForm] = useState(false)
+  const [toggleLogoutForm, setToggleLogoutForm] = useState(false)
   const { token } = useContext(AuthContext);
 
   const handleFormToggle = () => {
     setToggleUpdForm(!toggleUpdForm)
+  }
+
+  const handleLogoutFormToggle = () => {
+    setToggleLogoutForm(!toggleLogoutForm)
   }
 
   useEffect(() => {
@@ -58,8 +64,10 @@ export default function ProfilePage() {
           </div>
         ))}
       </div>
+      <button onClick={handleLogoutFormToggle}><FaRegEdit fontWeight='bolder' fontSize='20px'/></button>
       <div className='update-form-pg'>
         {toggleUpdForm && <UpdateProfile />}
+        {toggleLogoutForm && <Logout />}
       </div>
     </div>
   );

@@ -6,19 +6,26 @@ import { FaTasks, FaBars, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
 import { MdGroups, MdAccountCircle } from "react-icons/md";
 import { GiAtomicSlashes } from "react-icons/gi";
 import { SynToggleContext } from '../utils/SynaptronToggle'
+import { AuthContext } from '../utils/TokenProvider'
+
+async function fetchUserName(){
+  const name = await localStorage.getItem('userName')
+  return name;
+}
 
 export default function Sidebar() {
+  const { tokenIsPresent } = useContext(AuthContext);
   const { handleSynaptronToggle } = useContext(SynToggleContext);
   const [sidebarToggle, setSidebarToggle] = useState(true)
   const [profileName, setProfileName] = useState("Account")
 
-  async function fetchUserName(){
-    const name = await localStorage.getItem('userName')
-    setProfileName(name)
-  }
   useEffect(() => {
-    fetchUserName()
-  }, [profileName]);
+    async function fetchingUserName() {
+        const fetchedName = await fetchUserName()
+        setProfileName(fetchedName)
+    }
+    fetchingUserName()
+  }, [tokenIsPresent]);
 
   const handleSidebarToggle = () => {
     setSidebarToggle(!sidebarToggle)

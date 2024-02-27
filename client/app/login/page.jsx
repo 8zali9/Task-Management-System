@@ -7,11 +7,19 @@ import { AuthContext } from '../utils/TokenProvider'
 import { useState, useContext } from 'react';
 
 export default function Login() {
-  const { token, setToken } = useContext(AuthContext);
+  const { setTokenIsPresent } = useContext(AuthContext);
   const router = useRouter()
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+
+  async function tokenPresence() {
+    await setTokenIsPresent(false);
+  
+    setTimeout(async () => {
+      await setTokenIsPresent(true);
+    }, 100);
+  }
 
   const handleAuthSubmit = async (e) => {
     e.preventDefault()
@@ -28,11 +36,7 @@ export default function Login() {
       localStorage.setItem('userID', data.userID);
       localStorage.setItem('userName', data.userName);
       localStorage.setItem('userEmail', data.userEmail);
-      const storedToken = document.cookie.split('; ').find(row => row.startsWith('jwt='));
-      if (storedToken) {
-          const fetchedTokenValue = storedToken.split('=')[1];
-          await setToken(fetchedTokenValue);
-      }
+      await tokenPresence()
       router.push('/profile')
       toast.dark("Your TM Workspace");
     }
