@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SynaptronToggle>
-          <Header />
-          <ToastContainer />
           <TokenProvider >
+            <Header />
+            <ToastContainer />
               {children}
           </TokenProvider>
         </SynaptronToggle>

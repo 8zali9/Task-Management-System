@@ -7,9 +7,9 @@ import { FaRegEdit } from "react-icons/fa";
 
 export default function ProfilePage() {
   const userID = localStorage.getItem('userID')
-  const { token } = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState([]);
   const [toggleUpdForm, setToggleUpdForm] = useState(false)
+  const { token } = useContext(AuthContext);
 
   const handleFormToggle = () => {
     setToggleUpdForm(!toggleUpdForm)
@@ -49,7 +49,7 @@ export default function ProfilePage() {
       <div className='user-details'>
         <div className='pg-head'>
           <h3 className='pg-heading'>Dashboard</h3>
-          <button onClick={handleFormToggle}><FaRegEdit fontSize='20px'/></button>
+          <button onClick={handleFormToggle}><FaRegEdit fontWeight='bolder' fontSize='20px'/></button>
         </div>
         {userDetails.map((user) => (
           <div className='user-div' key={user.userID}>
