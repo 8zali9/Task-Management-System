@@ -11,7 +11,7 @@ export default function AddTask() {
   const userID = localStorage.getItem('userID')
   const [taskName, setTaskName] = useState("")
   const [taskDetails, setTaskDetails] = useState("")
-  const { token } = useContext(AuthContext);
+  // const { token } = useContext(AuthContext);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
@@ -20,7 +20,7 @@ export default function AddTask() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        // 'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ taskName, taskDetails }),
       credentials: 'include'

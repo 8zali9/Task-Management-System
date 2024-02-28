@@ -9,8 +9,10 @@ import { SynToggleContext } from '../utils/SynaptronToggle'
 import { AuthContext } from '../utils/TokenProvider'
 
 async function fetchUserName(){
-  const name = await localStorage.getItem('userName')
-  return name;
+    const name = await localStorage.getItem('userName')
+    const nameParts = name.split(' ');
+    const firstName = nameParts[0];
+    return firstName.charAt(0).toUpperCase() + firstName.charAt(1);
 }
 
 export default function Sidebar() {
@@ -38,13 +40,13 @@ export default function Sidebar() {
                 <button className="sidebar-toggle" onClick={handleSidebarToggle}>
                     <FaBars fontWeight='bolder' fontSize='15px' className='sidebar-toggle-btn'/>
                 </button>
-                <Link className='logo' href='/'>
+                <div className='logo' href='/'>
                     <img className='logo-tm' src="./logo.png" />
-                </Link>
+                </div>
             </div>
 
             <div className='nav-side'>
-                {profileName}
+              {tokenIsPresent ? profileName : <MdAccountCircle color='#1b1420ee' />}
             </div>
         </nav>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
@@ -19,7 +19,7 @@ export default function UpdateProfile() {
   // upd - update
   const [nameToUpd, setNameToUpd] = useState(userName)
   const [emailToUpd, setEmailToUpd] = useState(userEmail)
-  const { token } = useContext(AuthContext);
+  // const { token } = useContext(AuthContext);
 
   const handleUpdateFormSubmit = async (e) => {
     e.preventDefault()
@@ -28,7 +28,7 @@ export default function UpdateProfile() {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        // 'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ userName: nameToUpd, userEmail: emailToUpd }),
       credentials: 'include'

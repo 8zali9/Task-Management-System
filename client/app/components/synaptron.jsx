@@ -27,8 +27,10 @@ export default function Synaptron() {
     // }
     const [chatContent, setChatContent] = useState([]);
     const [userQuery, setUserQuery] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const handleChatContentFilling = async (e) => {
+        setLoading(true)
         e.preventDefault()
     
         const response = await fetch('http://localhost:1231/',{
@@ -39,6 +41,7 @@ export default function Synaptron() {
     
         const data = await response.json();
         setChatContent(prevChatContent => [...prevChatContent, data]);
+        setLoading(false)
         setUserQuery("")
     }
   return (
@@ -67,6 +70,7 @@ export default function Synaptron() {
             </div>
 
             <form onSubmit={handleChatContentFilling} className='synsb-div' id="synaptronInput">
+                {loading && <GiAtomicSlashes className={`${loading ? 'loading' : ''}`} />}
                 <input
                 className='syn-searchbar'
                 type="text"

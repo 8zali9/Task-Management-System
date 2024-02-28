@@ -12,7 +12,7 @@ function fetchUserID(){
 }
 
 export default function TasksPage() {
-  const { token } = useContext(AuthContext);
+  // const { token } = useContext(AuthContext);
   // const router = useRouter()
 
   // if (!token) {
@@ -39,7 +39,7 @@ export default function TasksPage() {
         const response = await fetch(`http://localhost:2424/api/usertasks/${userID}`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
           credentials: 'include'
@@ -52,7 +52,7 @@ export default function TasksPage() {
     };
 
     fetchData();
-  }, [userID, token]);
+  }, [userID]);
 
   if ((!Array.isArray(tasks)) || (tasks.length === 0)) {
     return (
@@ -63,6 +63,7 @@ export default function TasksPage() {
           <h3 className='pg-heading'>Tasks</h3>
           <button onClick={handleFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
         </div>
+        <p>No Tasks</p>
       </div>
     </div>
     );

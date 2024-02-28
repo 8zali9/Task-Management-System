@@ -24,6 +24,24 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.loading {
+    z-index: 1;
+    color: #3c2468b2;
+    font-size: 20px;
+    animation: colorChange 700ms infinite alternate;
+}
+@keyframes colorChange {
+    0% {
+        color: white;
+    }
+    50% {
+        color: #2c55779d;
+    }
+    100% {
+        color: lightslategrey;
+    }
+}
+
 .synaptron-chat.shown {
     display: flex;
     flex-direction: column;
@@ -186,6 +204,11 @@ button{
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    background-color: #ffffff13;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.822);
+    color: #1b1420ee;
 }
 
 .theme-toggle{
@@ -287,6 +310,24 @@ button{
     display: flex;
     padding-top: 100px;
     margin-left: 200px;
+}
+
+.home-pg{
+    flex-direction: column;
+}
+
+button{
+    cursor: pointer;
+}
+
+.logout-btn{
+    background-color: rgb(219, 56, 56);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    width: 70px;
+    height: 35px;
+    margin-top: 10px;
 }
 
 /* Profile Page, Tasks Page */

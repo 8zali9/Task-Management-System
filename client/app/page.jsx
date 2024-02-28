@@ -1,3 +1,8 @@
+import Link from "next/link";
+
 export default function Home() {
-  return <main className="home-pg"></main>;
+  return ( 
+    <main className="home-pg">
+    </main>
+  );
 }

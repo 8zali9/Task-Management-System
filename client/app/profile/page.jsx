@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
+import { FaSignOutAlt } from "react-icons/fa";
 import UpdateProfile from '../components/UpdateProfile';
 import Logout from '../components/Logout'
 import { FaRegEdit } from "react-icons/fa";
@@ -11,7 +12,7 @@ export default function ProfilePage() {
   const [userDetails, setUserDetails] = useState([]);
   const [toggleUpdForm, setToggleUpdForm] = useState(false)
   const [toggleLogoutForm, setToggleLogoutForm] = useState(false)
-  const { token } = useContext(AuthContext);
+  // const { token } = useContext(AuthContext);
 
   const handleFormToggle = () => {
     setToggleUpdForm(!toggleUpdForm)
@@ -27,7 +28,7 @@ export default function ProfilePage() {
         const response = await fetch(`http://localhost:2424/api/user/${userID}`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
           credentials: 'include'
@@ -40,7 +41,7 @@ export default function ProfilePage() {
     };
 
     fetchData();
-  }, [userID, token]);
+  }, [userID]);
 
   if ((!Array.isArray(userDetails)) || (userDetails.length === 0)) {
     return (
@@ -63,11 +64,11 @@ export default function ProfilePage() {
             <p className='details'>{user.userEmail}</p>
           </div>
         ))}
+        <button className='logout-btn' onClick={handleLogoutFormToggle}>Logout</button>
       </div>
-      <button onClick={handleLogoutFormToggle}><FaRegEdit fontWeight='bolder' fontSize='20px'/></button>
       <div className='update-form-pg'>
-        {toggleUpdForm && <UpdateProfile />}
-        {toggleLogoutForm && <Logout />}
+        {toggleUpdForm && !toggleLogoutForm && <UpdateProfile />}
+        {toggleLogoutForm && !toggleUpdForm && <Logout />}
       </div>
     </div>
   );

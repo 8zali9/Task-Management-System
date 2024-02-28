@@ -8,6 +8,7 @@ export function TokenProvider({ children }) {
   const [token, setToken] = useState("")
   const [tokenIsPresent, setTokenIsPresent] = useState(false)
 
+  // if http is set to false (for any reason during development);
   useEffect(() => {
     const storedToken = document.cookie.split('; ').find(row => row.startsWith('jwt='));
     if (storedToken) {
