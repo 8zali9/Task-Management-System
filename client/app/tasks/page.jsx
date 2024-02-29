@@ -2,9 +2,9 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
+import { ToggleFormContext } from '../utils/ToggleForm';
 import { IoMdAddCircleOutline } from "react-icons/io";
-import AddTask from '../components/AddTask'
-import { useRouter } from 'next/navigation'
+import AddTask from '../components/pageComponents/AddTask'
 
 function fetchUserID(){
   const userID = localStorage.getItem('userID')
@@ -12,26 +12,10 @@ function fetchUserID(){
 }
 
 export default function TasksPage() {
-  // const { token } = useContext(AuthContext);
-  // const router = useRouter()
-
-  // if (!token) {
-  //   router.push('/login')
-  //   console.log(token)
-  //   return (
-  //     <div className='tasks-pg'>
-  //       <div className='User Doesnt exist'>Routing to Login page...</div>
-  //     </div>
-  //   );
-  // }
+  const { toggleAddTaskForm, handleAddTaskFormToggle } = useContext(ToggleFormContext)
 
   const [tasks, setTasks] = useState([]);
-  const [toggleAddTaskForm, setToggleAddTaskForm] = useState(false)
   const userID = fetchUserID()
-
-  const handleFormToggle = () => {
-    setToggleAddTaskForm(!toggleAddTaskForm)
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +45,7 @@ export default function TasksPage() {
       <div className='task-details'>
         <div className='pg-head'>
           <h3 className='pg-heading'>Tasks</h3>
-          <button onClick={handleFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
+          <button onClick={handleAddTaskFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
         </div>
         <p>No Tasks</p>
       </div>
@@ -74,7 +58,7 @@ export default function TasksPage() {
       <div className='task-details'>
         <div className='pg-head'>
           <h3 className='pg-heading'>Tasks</h3>
-          <button onClick={handleFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
+          <button onClick={handleAddTaskFormToggle}><IoMdAddCircleOutline fontSize='30px'/></button>
         </div>
         {tasks.map((task) => (
           <div className='tasks-div' key={task.taskID}>

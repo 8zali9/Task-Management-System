@@ -1,11 +1,14 @@
 "use client"
 
 import { useContext, useState } from 'react';
-import { AuthContext } from '../utils/TokenProvider';
+import { AuthContext } from '../../utils/TokenProvider';
+import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 
 export default function AddTask() {
+  const { handleAddTaskFormToggle } = useContext(ToggleFormContext)
+
   const router = useRouter()
 
   const userID = localStorage.getItem('userID')
@@ -38,17 +41,17 @@ export default function AddTask() {
   const isDisabled = !taskName || !taskDetails;
 
   return (
-    <div className='updateForm-pg'>
-      <form className='update-form' onSubmit={handleFormSubmit}>
+    <div className='general-form-pg'>
+      <form className='general-form' onSubmit={handleFormSubmit}>
         <legend>Add task</legend>
-        <input className='form-input'
+        <input className='general-form-input'
           required
           placeholder='Task name'
           type='text'
           onChange={(e) => setTaskName(e.target.value)}
           value={taskName}
         />
-        <input className='form-input'
+        <input className='general-form-input'
           required
           placeholder='Details'
           type='text'
@@ -56,7 +59,10 @@ export default function AddTask() {
           value={taskDetails}
         />
 
-        <button disabled={isDisabled} type='submit' className='login-form-btn'>Add</button>
+        <div className='general-form-btns-div'>
+          <button disabled={isDisabled} type='submit' className='general-form-btn'>Add</button>
+          <button onClick={handleAddTaskFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+        </div>
       </form>
     </div>
   );

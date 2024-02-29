@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { FaTasks, FaBars, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
 import { MdGroups, MdAccountCircle } from "react-icons/md";
 import { GiAtomicSlashes } from "react-icons/gi";
-import { SynToggleContext } from '../utils/SynaptronToggle'
-import { AuthContext } from '../utils/TokenProvider'
+import { SynToggleContext } from '../../utils/SynaptronToggle'
+import { AuthContext } from '../../utils/TokenProvider'
 
 async function fetchUserName(){
     const name = await localStorage.getItem('userName')

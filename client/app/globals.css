@@ -18,6 +18,148 @@ body {
     border: 3px solid black;
   }
 
+  /* Head */
+
+header{
+    width: 100%;
+    position: fixed;
+    background-color: #ccd5ae;
+    z-index: 1;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 35px;
+    margin-left: 35px;
+    z-index: 1;
+}
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
+button{
+    display: block;
+    background-color: transparent;
+    border: none;
+}
+
+.sidebar-toggle-btn{
+    color: white;
+}
+
+.brand-div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+  
+.logo-tm {
+    height: 55px;
+    width: 90px;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.nav-side{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    background-color: #ffffff13;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.822);
+    color: #1b1420ee;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: #ccd5ae;
+    width: 145px;
+    height: 100vh;
+    transition: 0.3s ease;
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    gap: 50vh;
+}
+
+.nav-up-links{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.signlog-btn{
+    display: flex;
+    background-color: #1b1420;
+    color: white;
+    border-radius: 4px;
+    height: 32px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+    font-size: 17px;
+}
+
+.signlog-btn:hover{
+    align-items: center;
+    border: 1px solid white;
+    background-color: white;
+    color: #1b1420;
+}
+
+.hide-navd-btn{
+    display: flex;
+    width: 20%;
+    margin-left: 120px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.navbar.shown{
+    position: fixed;
+    background-color: #1b1420;
+    width: 150px;
+    margin-left: -96px;
+    transition: 0.3s ease;
+}
+
+.nav-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    transition: 0.5ms ease;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.nav-div:hover{
+    background-color: #ffffff13;
+}
+
+.nav-link-name{
+    font-size: 15px;
+    color: white;
+}
+
+.nav-icon{
+    color: white;
+    font-size: 17px;
+}
+
 /* synaptron */
 .synaptron {
     top: -100px;
@@ -30,6 +172,7 @@ body {
     font-size: 20px;
     animation: colorChange 700ms infinite alternate;
 }
+
 @keyframes colorChange {
     0% {
         color: white;
@@ -108,7 +251,10 @@ input:focus{
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-self:center;
     font-size: smaller;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
 .syn-content{
@@ -135,7 +281,7 @@ input:focus{
     /* position:absolute; */
     font-size: 100px;
     margin-top: 10px;
-    margin-left: 550px;
+    margin-left: 570px;
     margin-right: 612px;
     align-items: center;
     height: 60px;
@@ -150,158 +296,6 @@ input:focus{
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
-
-header{
-    width: 100%;
-    position: fixed;
-    background-color: #3c2468b2;
-    z-index: 1;
-}
-
-nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 35px;
-    margin-left: 35px;
-    z-index: 1;
-}
-
-a{
-    text-decoration: none;
-    color:white;
-}
-
-button{
-    display: block;
-    background-color: transparent;
-    border: none;
-}
-
-.sidebar-toggle-btn{
-    color: white;
-}
-
-.brand-div{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-  
-.logo-tm {
-    height: 55px;
-    width: 90px;
-    align-items: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-}
-
-.nav-side{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    background-color: #ffffff13;
-    padding: 10px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.822);
-    color: #1b1420ee;
-}
-
-.theme-toggle{
-    font-size: 20px;
-}
-
-.dark-theme{
-    color: white;
-}
-
-.light-theme{
-    color: #1b1420;
-}
-
-.navbar{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    background-color: #3c2468b2;
-    width: 145px;
-    height: 100vh;
-    transition: 0.3s ease;
-    padding-top: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
-    gap: 50vh;
-}
-
-.nav-up-links{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.signlog-btn{
-    display: flex;
-    background-color: #1b1420;
-    color: white;
-    border-radius: 4px;
-    height: 32px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s ease;
-    font-size: 17px;
-}
-
-.signlog-btn:hover{
-    align-items: center;
-    border: 1px solid white;
-    background-color: white;
-    color: #1b1420;
-}
-
-.hide-navd-btn{
-    display: flex;
-    width: 20%;
-    margin-left: 120px;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.navbar.shown{
-    position: fixed;
-    background-color: #1b1420;
-    width: 150px;
-    margin-left: -96px;
-    transition: 0.3s ease;
-}
-
-.nav-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: transparent;
-    transition: 0.5ms ease;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-.nav-div:hover{
-    background-color: #ffffff13;
-}
-
-.nav-link-name{
-    font-size: 15px;
-    color: white;
-}
-
-.nav-icon{
-    color: white;
-    font-size: 17px;
 }
 
 /* Home page */
@@ -371,26 +365,73 @@ button{
 
 /* Update Form */
 
-.updateForm-pg{
-    padding-top: 0;
-    height: 100%;
-}
-
-.update-form{
+.general-form-pg{
     display: flex;
     flex-direction: column;
-    border: 2px solid #3c2468b2;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.555);
+    z-index: 1;
+}
+
+.general-form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid silver;
+    background-color: #1b1420ee;
+    color: white;
     gap: 20px;
     padding: 50px;
     width: 250px;
     border-radius: 4px;
-    margin-right: 50px;
 }
 
-.update-form-pg{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.general-form-input{
+    border: 2px solid silver;
+    padding: 8px;
+    height: 16px;
+    border-radius: 4px;
+    transition: 0.2s ease;
+}
+
+.general-form-input:focus {
+    outline: none;
+    border-color: rgb(129, 129, 129);
+}
+
+.general-form-btns-div{
+    width: 250px;
+}
+
+.general-form-btn{
+    background-color: white;
+    color: #1b1420;
+    font-size: 17px;
+    height: 32px;
+    width: 250px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid #1b1420;
+    transition: 0.2s ease;
+    margin-top: 10px;
+}
+
+.cancel-btn{
+    background-color: #1b1420;
+    color: white;
+}
+
+.general-form-btn:hover{
+    background-color: #1b1420;
+    color: white;
+    border-color: white;
 }
 
 /* Login page */
@@ -409,7 +450,7 @@ legend{
 .login-form{
     display: flex;
     flex-direction: column;
-    border: 3px solid #3c2468b2;
+    border: 3px solid #ccd5ae;
     gap: 20px;
     padding: 50px;
     width: 300px;
@@ -418,7 +459,7 @@ legend{
 }
 
 .form-input{
-    border: 2px solid #3c2468b2;
+    border: 2px solid silver;
     padding: 8px;
     height: 16px;
     border-radius: 4px;
@@ -427,7 +468,7 @@ legend{
 
 .form-input:focus {
     outline: none;
-    border-color: #57217e;
+    border-color: #ccd5ae;
 }
 
 .login-form-btn{

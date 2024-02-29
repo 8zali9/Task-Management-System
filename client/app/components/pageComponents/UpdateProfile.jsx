@@ -1,7 +1,8 @@
 "use client"
 
 import { useContext, useState } from 'react';
-import { AuthContext } from '../utils/TokenProvider';
+import { AuthContext } from '../../utils/ToggleForm';
+import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 
@@ -11,6 +12,8 @@ function updateLocalStorage(name, email){
 }
 
 export default function UpdateProfile() {
+  const { handleUpdFormToggle } = useContext(ToggleFormContext)
+  
   const router = useRouter()
 
   const userID = localStorage.getItem('userID')
@@ -47,25 +50,27 @@ export default function UpdateProfile() {
   const isDisabled = !nameToUpd || !emailToUpd || (nameToUpd === userName && emailToUpd === userEmail);
 
   return (
-    <div className='updateForm-pg'>
-      <form className='update-form' onSubmit={handleUpdateFormSubmit}>
+    <div className='general-form-pg'>
+      <form className='general-form' onSubmit={handleUpdateFormSubmit}>
         <legend>Edit Profile Details</legend>
-        <input className='form-input'
+        <input className='general-form-input'
           required
           placeholder='New name'
           type='text'
           onChange={(e) => setNameToUpd(e.target.value)}
           value={nameToUpd}
         />
-        <input className='form-input'
+        <input className='general-form-input'
           required
           placeholder='New Email'
           type='email'
           onChange={(e) => setEmailToUpd(e.target.value)}
           value={emailToUpd}
         />
-
-        <button disabled={isDisabled} type='submit' className='login-form-btn'>Update</button>
+        <div className='general-form-btns-div'>
+          <button disabled={isDisabled} type='submit' className='general-form-btn'>Update</button>
+          <button onClick={handleUpdFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+        </div>
       </form>
     </div>
   );

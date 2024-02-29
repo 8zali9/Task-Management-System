@@ -79,7 +79,10 @@ export default function Synaptron() {
                 value={userQuery}
                 />
                 <button type='submit'></button>
-                <i className='synsb-below'><GiAtomicSlashes className='nav-icon' />Synaptron - powered by Gemini-AI</i>
+                <div className='synsb-below'>
+                    <GiAtomicSlashes className='nav-icon' />
+                    <i>Synaptron - powered by Gemini-AI</i>
+                </div>
             </form>
         </div>
     </div>

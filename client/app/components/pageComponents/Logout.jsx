@@ -3,7 +3,8 @@
 import {React, useContext} from 'react'
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation'
-import { AuthContext } from '../utils/TokenProvider'
+import { AuthContext } from '../../utils/TokenProvider'
+import { ToggleFormContext } from '../../utils/ToggleForm';
 
 async function updateLocalStorage(){
   localStorage.setItem('userID', "");
@@ -13,6 +14,8 @@ async function updateLocalStorage(){
 
 export default function Logout() {
   const { setTokenIsPresent } = useContext(AuthContext);
+  const { handleLogoutFormToggle } = useContext(ToggleFormContext)
+
   const router = useRouter()
   const handleLogoutFormSubmit = async (e) => {
     e.preventDefault()
@@ -37,10 +40,13 @@ export default function Logout() {
   }
 
   return (
-    <div className='updateForm-pg'>
-      <form className='update-form' onSubmit={handleLogoutFormSubmit}>
+    <div className='general-form-pg'>
+      <form className='general-form' onSubmit={handleLogoutFormSubmit}>
         <legend>Are you sure you want to logout?</legend>
-        <button type='submit' className='login-form-btn'>Yes, Logout</button>
+        <div className='general-form-btns-div'>
+          <button type='submit' className='general-form-btn'>Yes, Logout</button>
+          <button onClick={handleLogoutFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+        </div>
       </form>
     </div>
   );

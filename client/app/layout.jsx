@@ -1,10 +1,11 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from './components/Header'
+import Header from './components/Head/Header'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TokenProvider } from './utils/TokenProvider'
 import { SynaptronToggle } from './utils/SynaptronToggle'
+import { ToggleForm } from './utils/ToggleForm'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,9 +20,11 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <SynaptronToggle>
           <TokenProvider >
-            <Header />
-            <ToastContainer />
-              {children}
+            <ToggleForm>
+              <Header />
+              <ToastContainer />
+                {children}
+            </ToggleForm>
           </TokenProvider>
         </SynaptronToggle>
       </body>

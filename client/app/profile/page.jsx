@@ -2,25 +2,16 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
-import { FaSignOutAlt } from "react-icons/fa";
-import UpdateProfile from '../components/UpdateProfile';
-import Logout from '../components/Logout'
+import { ToggleFormContext } from '../utils/ToggleForm';
+import UpdateProfile from '../components/pageComponents/UpdateProfile';
+import Logout from '../components/pageComponents/Logout'
 import { FaRegEdit } from "react-icons/fa";
 
 export default function ProfilePage() {
   const userID = localStorage.getItem('userID')
   const [userDetails, setUserDetails] = useState([]);
-  const [toggleUpdForm, setToggleUpdForm] = useState(false)
-  const [toggleLogoutForm, setToggleLogoutForm] = useState(false)
-  // const { token } = useContext(AuthContext);
-
-  const handleFormToggle = () => {
-    setToggleUpdForm(!toggleUpdForm)
-  }
-
-  const handleLogoutFormToggle = () => {
-    setToggleLogoutForm(!toggleLogoutForm)
-  }
+  const { tokenIsPresent } = useContext(AuthContext);
+  const { toggleUpdForm, toggleLogoutForm, handleUpdFormToggle, handleLogoutFormToggle } = useContext(ToggleFormContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,7 +47,7 @@ export default function ProfilePage() {
       <div className='user-details'>
         <div className='pg-head'>
           <h3 className='pg-heading'>Dashboard</h3>
-          <button onClick={handleFormToggle}><FaRegEdit fontWeight='bolder' fontSize='20px'/></button>
+          <button onClick={handleUpdFormToggle}><FaRegEdit fontWeight='bolder' fontSize='20px'/></button>
         </div>
         {userDetails.map((user) => (
           <div className='user-div' key={user.userID}>
@@ -67,8 +58,8 @@ export default function ProfilePage() {
         <button className='logout-btn' onClick={handleLogoutFormToggle}>Logout</button>
       </div>
       <div className='update-form-pg'>
-        {toggleUpdForm && !toggleLogoutForm && <UpdateProfile />}
-        {toggleLogoutForm && !toggleUpdForm && <Logout />}
+        {toggleUpdForm && <UpdateProfile />}
+        {toggleLogoutForm && <Logout />}
       </div>
     </div>
   );
