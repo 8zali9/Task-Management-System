@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import { AuthContext } from '../utils/TokenProvider'
 import { useState, useContext } from 'react';
+import ToastMsg from '../utils/ToastMsg'
 
 export default function Login() {
   const { setTokenIsPresent } = useContext(AuthContext);
@@ -38,10 +39,10 @@ export default function Login() {
       localStorage.setItem('userEmail', data.userEmail);
       await tokenPresence()
       router.push('/profile')
-      toast.dark("Your TM Workspace");
+      toast.dark(<ToastMsg msg={"Your TM Workspace"} color={"rgb(76, 240, 76)"} />);
     }
     else{
-      toast.dark("Incorrect Credentials")
+      toast.dark(<ToastMsg msg={"Incorrect Credentials"} color={"red"} />);
     }
   }
 
@@ -68,7 +69,7 @@ export default function Login() {
 
         <div className='not-have-acc'>
           <p>Not have an account?</p>
-          <Link className='nha-link' href='/'>Signup</Link>
+          <Link className='nha-link' href='/register'>Signup</Link>
         </div>
       </form>
     </div>

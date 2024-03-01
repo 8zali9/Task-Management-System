@@ -5,6 +5,7 @@ import { AuthContext } from '../../utils/TokenProvider';
 import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
+import ToastMsg from '../../utils/ToastMsg'
 
 export default function AddTask() {
   const { handleAddTaskFormToggle } = useContext(ToggleFormContext)
@@ -34,10 +35,10 @@ export default function AddTask() {
       setTimeout(async () => {
         await router.push('/tasks');
       }, 100);
-      toast.dark("Task added.");
+      toast.dark(<ToastMsg msg={"Task Added"} color={"rgb(76, 240, 76)"} />);
     }
     else{
-      toast.dark("Problem adding task")
+      toast.dark(<ToastMsg msg={"Problem adding task"} color={"red"} />);
     }
     
     handleAddTaskFormToggle();
@@ -66,7 +67,7 @@ export default function AddTask() {
 
         <div className='general-form-btns-div'>
           <button disabled={isDisabled} type='submit' className='general-form-btn'>Add</button>
-          <button onClick={handleAddTaskFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+          <button onClick={handleAddTaskFormToggle} className='general-form-btn cancel-btn'>Cancel</button>
         </div>
       </form>
     </div>

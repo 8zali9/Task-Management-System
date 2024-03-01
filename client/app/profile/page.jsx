@@ -5,13 +5,22 @@ import { AuthContext } from '../utils/TokenProvider';
 import { ToggleFormContext } from '../utils/ToggleForm';
 import UpdateProfile from '../components/pageComponents/UpdateProfile';
 import Logout from '../components/pageComponents/Logout'
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaInfoCircle } from "react-icons/fa";
+import DeleteUser from '../components/pageComponents/DeleteUser';
+import next from 'next';
 
 export default function ProfilePage() {
   const userID = localStorage.getItem('userID')
   const [userDetails, setUserDetails] = useState([]);
   const { tokenIsPresent } = useContext(AuthContext);
-  const { toggleUpdForm, toggleLogoutForm, handleUpdFormToggle, handleLogoutFormToggle } = useContext(ToggleFormContext)
+  const { 
+    toggleUpdForm, 
+    toggleLogoutForm, 
+    toggleDelAccountForm,
+    handleUpdFormToggle, 
+    handleLogoutFormToggle,
+    handleDelAccountFormToggle 
+  } = useContext(ToggleFormContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,8 +31,11 @@ export default function ProfilePage() {
             // 'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-          credentials: 'include'
-        });
+          credentials: 'include',
+          next: {
+            revalidate: 0
+          }
+        },);
         const data = await response.json();
         setUserDetails(data);
       } catch (error) {
@@ -55,11 +67,27 @@ export default function ProfilePage() {
             <p className='details'>{user.userEmail}</p>
           </div>
         ))}
-        <button className='logout-btn' onClick={handleLogoutFormToggle}>Logout</button>
+        <div className='profile-pg-btns'>
+          <button className='logout-btn' onClick={handleLogoutFormToggle}>Logout</button>
+          <div className='account-delete-section'>
+            <div className='account-delete-div'>
+              <p>Account Termination</p>
+              <button className='del-acc-btn' onClick={handleDelAccountFormToggle}>Delete Account</button>
+            </div>
+            <div className='account-delete-info'>
+              <FaInfoCircle />
+              <p>
+                You need to remove all the tasks yourself to proceed to terminate your account. <br />
+                This is to ensure that users fully understand the consequences of deleting their accounts and helps prevent accidental deletions.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className='update-form-pg'>
         {toggleUpdForm && <UpdateProfile />}
         {toggleLogoutForm && <Logout />}
+        {toggleDelAccountForm && <DeleteUser />}
       </div>
     </div>
   );

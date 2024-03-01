@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { TokenProvider } from './utils/TokenProvider'
 import { SynaptronToggle } from './utils/SynaptronToggle'
 import { ToggleForm } from './utils/ToggleForm'
+import { ToggleNavBtns } from './utils/ToggleNavBtns';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,11 +21,13 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <SynaptronToggle>
           <TokenProvider >
-            <ToggleForm>
-              <Header />
-              <ToastContainer />
-                {children}
-            </ToggleForm>
+            <ToggleNavBtns>
+              <ToggleForm>
+                <Header />
+                <ToastContainer />
+                  {children}
+              </ToggleForm>
+            </ToggleNavBtns>
           </TokenProvider>
         </SynaptronToggle>
       </body>

@@ -4,6 +4,7 @@ import { AuthContext } from '../../utils/ToggleForm';
 import { MdRemoveDone } from "react-icons/md";
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
+import ToastMsg from '../../utils/ToastMsg'
 
 export default function DeleteTask({ taskID }) {
   const router = useRouter()
@@ -28,10 +29,10 @@ export default function DeleteTask({ taskID }) {
       setTimeout(async () => {
         await router.push('/tasks');
       }, 100);
-      toast.dark("Task finished");
+      toast.dark(<ToastMsg msg={"Task finished"} color={"rgb(76, 240, 76)"} />);
     }
     else{
-      toast.dark("Problem removing task")
+      toast.dark(<ToastMsg msg={"Problem removing task"} color={"red"} />);
     }
   }
 

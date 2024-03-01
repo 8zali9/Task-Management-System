@@ -2,6 +2,7 @@
 
 import {React, useContext} from 'react'
 import { toast } from 'react-toastify';
+import ToastMsg from '../../utils/ToastMsg'
 import { useRouter } from 'next/navigation'
 import { AuthContext } from '../../utils/TokenProvider'
 import { ToggleFormContext } from '../../utils/ToggleForm';
@@ -32,10 +33,10 @@ export default function Logout() {
       await updateLocalStorage()
       await setTokenIsPresent(false)
       router.push('/login')
-      toast.dark("User signed out");
+      toast.dark(<ToastMsg msg={"User signed out"} color={"rgb(76, 240, 76)"} />);
     }
     else{
-      toast.dark("Problem logging out")
+      toast.dark(<ToastMsg msg={"Problem logging out"} color={"red"} />);
     }
 
     handleLogoutFormToggle()
@@ -47,7 +48,7 @@ export default function Logout() {
         <legend>Are you sure you want to logout?</legend>
         <div className='general-form-btns-div'>
           <button type='submit' className='general-form-btn'>Yes, Logout</button>
-          <button onClick={handleLogoutFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+          <button onClick={handleLogoutFormToggle} className='general-form-btn cancel-btn'>Cancel</button>
         </div>
       </form>
     </div>

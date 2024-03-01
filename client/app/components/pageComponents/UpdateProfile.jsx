@@ -5,6 +5,7 @@ import { AuthContext } from '../../utils/ToggleForm';
 import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
+import ToastMsg from '../../utils/ToastMsg'
 
 function updateLocalStorage(name, email){
   localStorage.setItem('userName', name);
@@ -43,10 +44,10 @@ export default function UpdateProfile() {
       setTimeout(async () => {
         await router.push('/profile');
       }, 100);
-      toast.dark("Profile updated.");
+      toast.dark(<ToastMsg msg={"Profile updated"} color={"rgb(76, 240, 76)"} />);
     }
     else{
-      toast.dark("Problem updating details")
+      toast.dark(<ToastMsg msg={"Problem updating profile"} color={"red"} />);
     }
 
     handleUpdFormToggle()
@@ -74,7 +75,7 @@ export default function UpdateProfile() {
         />
         <div className='general-form-btns-div'>
           <button disabled={isDisabled} type='submit' className='general-form-btn'>Update</button>
-          <button onClick={handleUpdFormToggle} type='submit' className='general-form-btn cancel-btn'>Cancel</button>
+          <button onClick={handleUpdFormToggle} className='general-form-btn cancel-btn'>Cancel</button>
         </div>
       </form>
     </div>

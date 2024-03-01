@@ -3,10 +3,11 @@
 import {React, useState, useContext, useEffect} from 'react'
 import Link from 'next/link'
 import { FaTasks, FaBars, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
-import { MdGroups, MdAccountCircle } from "react-icons/md";
+import { MdGroups, MdAccountCircle, MdPersonAddAlt1  } from "react-icons/md";
 import { GiAtomicSlashes } from "react-icons/gi";
 import { SynToggleContext } from '../../utils/SynaptronToggle'
 import { AuthContext } from '../../utils/TokenProvider'
+import { ToggleNavBtnsContext } from '../../utils/ToggleNavBtns'
 
 async function fetchUserName(){
     const name = await localStorage.getItem('userName')
@@ -16,14 +17,25 @@ async function fetchUserName(){
 }
 
 export default function Sidebar() {
+  const {
+    toggleProfileBtn, toggleTasksBtn, toggleGroupsBtn,
+    handleProfileBtnToggle, handleTasksBtnToggle, handleGroupsBtnToggle,
+  } = useContext(ToggleNavBtnsContext)
   const { tokenIsPresent } = useContext(AuthContext);
   const { handleSynaptronToggle } = useContext(SynToggleContext);
   const [sidebarToggle, setSidebarToggle] = useState(true)
+  const [authBtns, setAuthbtnsToggle] = useState(true)
   const [profileName, setProfileName] = useState("Account")
 
   useEffect(() => {
     async function fetchingUserName() {
         const fetchedName = await fetchUserName()
+        if(fetchedName){
+            await setAuthbtnsToggle(false)
+        }
+        else{
+            await setAuthbtnsToggle(true)
+        }
         setProfileName(fetchedName)
     }
     fetchingUserName()
@@ -52,27 +64,52 @@ export default function Sidebar() {
 
         <div className='sidebar'>
             <div className={`navbar ${sidebarToggle ? 'shown' : ''}`}>
-                <div className='nav-up-links'>
-                    <Link href='/profile' className='nav-div'>
-                        <strong className='nav-link-name'>Profile</strong>
-                        <MdAccountCircle className='nav-icon' />
-                    </Link>
-                    <Link href='/tasks' className='nav-div'>
-                        <strong className='nav-link-name'>Tasks</strong>
-                        <FaTasks className='nav-icon' />
-                    </Link>
-                    <Link href='/groups' className='nav-div'>
-                        <strong className='nav-link-name'>Groups</strong>
-                        <MdGroups className='nav-icon' />
-                    </Link>
-                    <button className="nav-div" onClick={handleSynaptronToggle}>
-                        <strong className='nav-link-name'>Synaptron</strong>
-                        <GiAtomicSlashes className='nav-icon' />
-                    </button>
-                </div>
-                <Link href='/login' className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
-                    <strong>{sidebarToggle ? <FaSignInAlt className='signlog-icon' /> : 'Login'}</strong>
-                </Link>
+                {
+                    !authBtns &&
+                    <div className='nav-up-links'>
+
+                        <Link 
+                        onClick={handleProfileBtnToggle} 
+                        href='/profile' 
+                        className={`nav-div ${toggleProfileBtn ? 'nav-selected-btn' : ''}`}>
+                            <strong className='nav-link-name'>Profile</strong>
+                            <MdAccountCircle className='nav-icon' />
+                        </Link>
+
+                        <Link 
+                        onClick={handleTasksBtnToggle} 
+                        href='/tasks' 
+                        className={`nav-div ${toggleTasksBtn ? 'nav-selected-btn' : ''}`}>
+                            <strong className='nav-link-name'>Tasks</strong>
+                            <FaTasks className='nav-icon' />
+                        </Link>
+
+                        <Link 
+                        onClick={handleGroupsBtnToggle} 
+                        href='/groups' 
+                        className={`nav-div ${toggleGroupsBtn ? 'nav-selected-btn' : ''}`}>
+                            <strong className='nav-link-name'>Groups</strong>
+                            <MdGroups className='nav-icon' />
+                        </Link>
+
+                        <button className="nav-div" onClick={handleSynaptronToggle}>
+                            <strong className='nav-link-name'>Synaptron</strong>
+                            <GiAtomicSlashes className='nav-icon' />
+                        </button>
+
+                    </div>
+                }
+                {
+                    authBtns &&
+                    <div className='auth-btns'> 
+                        <Link href='/register' className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
+                            <strong>{sidebarToggle ? <MdPersonAddAlt1 className='signlog-icon' /> : 'Register'}</strong>
+                        </Link>
+                        <Link href='/login' className={`signlog-btn ${sidebarToggle ? 'hide-navd-btn' : ''}`}>
+                            <strong>{sidebarToggle ? <FaSignInAlt className='signlog-icon' /> : 'Login'}</strong>
+                        </Link>
+                    </div>
+                }
             </div>
         </div>
     </div>

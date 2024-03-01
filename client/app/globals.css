@@ -4,6 +4,13 @@ body {
     height: 100%;
     /* font-family:Georgia, 'Times New Roman', Times, serif; */
 }
+
+.toast-msg{
+    display: flex;
+    align-items: center;
+    color:#ccd5ae;
+}
+
 *::-webkit-scrollbar {
     width: 12px;
   }
@@ -90,7 +97,7 @@ button{
     padding-top: 15px;
     padding-right: 10px;
     padding-left: 10px;
-    gap: 50vh;
+    gap: 45vh;
 }
 
 .nav-up-links{
@@ -150,6 +157,10 @@ button{
     background-color: #ffffff13;
 }
 
+.nav-selected-btn{
+    background-color: #ffffff52;
+}
+
 .nav-link-name{
     font-size: 15px;
     color: white;
@@ -158,6 +169,13 @@ button{
 .nav-icon{
     color: white;
     font-size: 17px;
+}
+
+.auth-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 75vh;
 }
 
 /* synaptron */
@@ -356,6 +374,48 @@ button{
     flex-direction: row;
 }
 
+.profile-pg-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.account-delete-section{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 20px;
+    border-top: 2px solid silver;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+.account-delete-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.account-delete-info{
+    gap: 2px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.164);
+}
+
+.del-acc-btn{
+    display: flex;
+    align-items: center;
+    background-color: rgb(219, 56, 56);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    width: 90px;
+    height: 40px;
+    margin-top: 10px;
+}
+
 /* Tasks Page */
 
 .tasks-div{
@@ -421,6 +481,10 @@ button{
     border-radius: 4px;
 }
 
+.account-delete-form{
+    border-color: rgb(228, 54, 54);
+}
+
 .general-form-input{
     border: 2px solid silver;
     padding: 8px;
@@ -471,6 +535,13 @@ button{
     padding-top: 170px;
 }
 
+.signup-pg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px;
+}
+
 legend{
     margin-bottom: 18px;
 }
@@ -483,6 +554,17 @@ legend{
     padding: 50px;
     width: 300px;
     height: 300px;
+    border-radius: 4px;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #ccd5ae;
+    gap: 20px;
+    padding: 50px;
+    width: 300px;
+    height: 350px;
     border-radius: 4px;
 }
 

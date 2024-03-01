@@ -43,6 +43,13 @@ const qUserExistenceCheck = `
     WHERE userEmail = ?
 `;
 
+// @desc    confirm user password
+const qGetUserPassword = `
+    SELECT userPassword
+    FROM accountUser u
+    WHERE userID = ?
+`;
+
 module.exports = {
   qGetUser,
   qCreateUser,
@@ -50,4 +57,5 @@ module.exports = {
   qUpdateUserWithoutPassword,
   qDeleteUser,
   qUserExistenceCheck, // used in Sign In
+  qGetUserPassword,
 };

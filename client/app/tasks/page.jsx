@@ -27,7 +27,10 @@ export default function TasksPage() {
             // 'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-          credentials: 'include'
+          credentials: 'include',
+          next: {
+            revalidate: 0
+          }
         });
         const data = await response.json();
         setTasks(data);

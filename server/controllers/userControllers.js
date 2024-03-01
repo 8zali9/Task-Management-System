@@ -12,6 +12,7 @@ const {
   qUpdateUserWithoutPassword,
   qDeleteUser,
   qUserExistenceCheck,
+  qGetUserPassword,
 } = require("../sql/userQueries");
 
 // @route   POST /api/user/signin
@@ -144,16 +145,43 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // @route   DELETE /api/user/:id
 // @desc    delete user
-const deleteUser = asyncHandler((req, res) => {
+const deleteUser = asyncHandler(async (req, res) => {
   const userToDelete = req.params.id;
+  const { userPassword } = req.body;
 
-  db.query(qDeleteUser, [userToDelete], (err, result) => {
-    if (err) {
-      res.status(404).json({ error: "Cannot delete the user." });
-    } else {
-      res.status(200).json({ message: "User Deleted Successfully." });
-    }
-  });
+  try {
+    db.query(qGetUserPassword, [userToDelete], async (err, result) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Something went wrong. Please try again." });
+      } else {
+        if (result.length === 0) {
+          return res.status(404).json({ error: "User not found." });
+        }
+
+        const passMatchCheck = await matchPassword(
+          userPassword,
+          result[0].userPassword
+        );
+
+        if (!passMatchCheck) {
+          return res.status(401).json({ error: "Incorrect Credentials." });
+        } else {
+          db.query(qDeleteUser, [userToDelete], (err, result) => {
+            if (err) {
+              res.status(404).json({ error: "Cannot delete the user." });
+            } else {
+              res.status(200).json({ message: "User Deleted Successfully." });
+            }
+          });
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Something went wrong. Please try again." });
+  }
 });
 
 module.exports = {
