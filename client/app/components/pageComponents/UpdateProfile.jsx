@@ -40,11 +40,16 @@ export default function UpdateProfile() {
     if (response.status === 200) {
       await updateLocalStorage(data.userName, data.userEmail)
       router.push('/tasks')
+      setTimeout(async () => {
+        await router.push('/profile');
+      }, 100);
       toast.dark("Profile updated.");
     }
     else{
       toast.dark("Problem updating details")
     }
+
+    handleUpdFormToggle()
   }
 
   const isDisabled = !nameToUpd || !emailToUpd || (nameToUpd === userName && emailToUpd === userEmail);

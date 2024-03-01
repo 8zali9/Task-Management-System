@@ -30,12 +30,17 @@ export default function AddTask() {
     });
     const data = await response.json();
     if (response.status === 201) {
-      router.push('/tasks')
+      router.push('/profile')
+      setTimeout(async () => {
+        await router.push('/tasks');
+      }, 100);
       toast.dark("Task added.");
     }
     else{
       toast.dark("Problem adding task")
     }
+    
+    handleAddTaskFormToggle();
   }
 
   const isDisabled = !taskName || !taskDetails;

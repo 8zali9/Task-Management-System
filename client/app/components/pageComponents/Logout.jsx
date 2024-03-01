@@ -31,12 +31,14 @@ export default function Logout() {
     if (response.status === 200) {
       await updateLocalStorage()
       await setTokenIsPresent(false)
-      router.push('/')
+      router.push('/login')
       toast.dark("User signed out");
     }
     else{
       toast.dark("Problem logging out")
     }
+
+    handleLogoutFormToggle()
   }
 
   return (

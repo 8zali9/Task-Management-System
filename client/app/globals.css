@@ -359,8 +359,36 @@ button{
 /* Tasks Page */
 
 .tasks-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.delete-task{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-form-btn{
+    font-size: 18px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: rgb(0, 94, 0);
+    border: 1px solid transparent;
+    background-color: transparent;
+    transition: 0.3s ease;
+    border-radius: 50%;
+}
+
+.delete-form-btn:hover{
+    border: 1px solid rgba(179, 179, 179, 0.575);
+    background-color: rgba(0, 0, 0, 0.158);
 }
 
 /* Update Form */

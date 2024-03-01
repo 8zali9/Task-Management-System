@@ -5,6 +5,7 @@ import { AuthContext } from '../utils/TokenProvider';
 import { ToggleFormContext } from '../utils/ToggleForm';
 import { IoMdAddCircleOutline } from "react-icons/io";
 import AddTask from '../components/pageComponents/AddTask'
+import DeleteTask from '../components/pageComponents/DeleteTask'
 
 function fetchUserID(){
   const userID = localStorage.getItem('userID')
@@ -62,8 +63,11 @@ export default function TasksPage() {
         </div>
         {tasks.map((task) => (
           <div className='tasks-div' key={task.taskID}>
-            <p className='name'><b>{task.taskName}</b></p>
-            <p className='details'>{task.taskDetails}</p>
+            <div className='tasks-part'>
+              <p className='name'><b>{task.taskName}</b></p>
+              <p className='details'>{task.taskDetails}</p>
+            </div>
+            <DeleteTask taskID={task.taskID} />
           </div>
         ))}
         {toggleAddTaskForm && <AddTask className='add-task-form'/>}
