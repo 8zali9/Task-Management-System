@@ -25,6 +25,23 @@ export default function Synaptron() {
     
     //     return parsedText;
     // }
+    function parseText(text) {
+        if (typeof text !== "string") {
+            // Convert to string if it's not already
+            text = String(text);
+        }
+        
+        let parsedText = [];
+        let segments = text.split("$l$");
+        for (let segment of segments) {
+            if (segment.trim() !== "") {
+                parsedText.push(segment.trim());
+            }
+        }
+        return parsedText;
+    }
+    
+
     const [chatContent, setChatContent] = useState([]);
     const [userQuery, setUserQuery] = useState("");
     const [loading, setLoading] = useState(false)
@@ -57,7 +74,7 @@ export default function Synaptron() {
             <div className='syn-content'>
                 {/* <div>User-{userQuery}</div>
                 <GiAtomicSlashes className='nav-icon' /> */}
-                {/* {parseText(chatContent)} */}
+                {parseText(chatContent)}
                 <div>
                 {chatContent.map((item, index) => (
                     <p key={index}>

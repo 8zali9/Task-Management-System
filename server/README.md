@@ -25,7 +25,7 @@ This is a simple Node.js API for managing user tasks in a database. It allows yo
 
 ## Getting Started
 
-### Prerequisites
+## Prerequisites
 
 Before running the application, make sure you have the following software installed:
 
@@ -33,7 +33,7 @@ Before running the application, make sure you have the following software instal
 - MySQL Server
 - npm or yarn
 
-### Installation
+## Installation
 
 1. Clone the repository:
 

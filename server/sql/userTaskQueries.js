@@ -17,8 +17,8 @@ const qGetTask = `
 
 // @desc    add a task
 const qAddTask = `
-    insert into task (taskName, taskDetails, userID)
-    values (?, ?, ?)
+    insert into task (taskName, taskDetails, priority, deadline, userID)
+    values (?, ?, ?, ?, ?)
 `;
 
 // @desc    update a task

@@ -15,6 +15,8 @@ export default function AddTask() {
   const userID = localStorage.getItem('userID')
   const [taskName, setTaskName] = useState("")
   const [taskDetails, setTaskDetails] = useState("")
+  const [priority, setPriority] = useState("1")
+  const [deadline, setDeadline] = useState("")
   // const { token } = useContext(AuthContext);
 
   const handleFormSubmit = async (e) => {
@@ -26,7 +28,7 @@ export default function AddTask() {
         'Content-Type': 'application/json',
         // 'Authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify({ taskName, taskDetails }),
+      body: JSON.stringify({ taskName, taskDetails, priority, deadline }),
       credentials: 'include'
     });
     const data = await response.json();
@@ -48,7 +50,7 @@ export default function AddTask() {
 
   return (
     <div className='general-form-pg'>
-      <form className='general-form' onSubmit={handleFormSubmit}>
+      <form className='general-form task-form' onSubmit={handleFormSubmit}>
         <legend>Add task</legend>
         <input className='general-form-input'
           required
@@ -57,6 +59,7 @@ export default function AddTask() {
           onChange={(e) => setTaskName(e.target.value)}
           value={taskName}
         />
+
         <input className='general-form-input'
           required
           placeholder='Details'
@@ -64,6 +67,27 @@ export default function AddTask() {
           onChange={(e) => setTaskDetails(e.target.value)}
           value={taskDetails}
         />
+
+        <div className='general-form-input-range-div'>
+          <label htmlFor="date-input">Deadline</label>
+          <input className='general-form-input date-input' 
+            required
+            type="datetime-local"
+            onChange={(e) => setDeadline(e.target.value)}
+          />
+        </div>
+
+        <div className='general-form-input-range-div'>
+          <label htmlFor="range-input">Intensity</label>
+          <input className='general-form-input range-input'
+            required
+            min="1"
+            max="3"
+            step="1"
+            type='range'
+            onChange={(e) => setPriority(e.target.value)}
+          />
+        </div>
 
         <div className='general-form-btns-div'>
           <button disabled={isDisabled} type='submit' className='general-form-btn'>Add</button>

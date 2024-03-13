@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <div className='login-pg'>
       <form className='login-form' onSubmit={handleAuthSubmit}>
-        <legend>Login to your Accout</legend>
+        <legend>Login to your Account</legend>
         <input className='form-input'
           required
           placeholder='Your Email'

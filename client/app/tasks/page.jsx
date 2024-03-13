@@ -69,6 +69,8 @@ export default function TasksPage() {
             <div className='tasks-part'>
               <p className='name'><b>{task.taskName}</b></p>
               <p className='details'>{task.taskDetails}</p>
+              <p className='details'>{task.priority}</p>
+              <p className='details'>{task.deadline}</p>
             </div>
             <DeleteTask taskID={task.taskID} />
           </div>

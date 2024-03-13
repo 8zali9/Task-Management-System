@@ -36,7 +36,7 @@ export default function Register() {
   return (
     <div className='login-pg signup-pg'>
       <form className='signup-form' onSubmit={handleAuthSubmit}>
-        <legend>Register a new Accout</legend>
+        <legend>Register a new Account</legend>
         <input className='form-input'
           required
           placeholder='Your Name'
