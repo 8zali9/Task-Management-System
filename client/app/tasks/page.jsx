@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/TokenProvider';
 import { ToggleFormContext } from '../utils/ToggleForm';
+import ToastMsg from '../utils/ToastMsg'
 import { IoMdAddCircleOutline } from "react-icons/io";
 import AddTask from '../components/pageComponents/AddTask'
 import DeleteTask from '../components/pageComponents/DeleteTask'
@@ -10,6 +11,16 @@ import DeleteTask from '../components/pageComponents/DeleteTask'
 function fetchUserID(){
   const userID = localStorage.getItem('userID')
   return userID
+}
+
+function priorityColor (priority) {
+  if (priority == 1) {
+    return <ToastMsg msg="" color="rgb(76, 240, 76)" />
+  } else if (priority == 2) {
+    return <ToastMsg msg="" color="yellow" />
+  } else {
+    return <ToastMsg msg="" color="red" />
+  }
 }
 
 export default function TasksPage() {
@@ -67,10 +78,12 @@ export default function TasksPage() {
         {tasks.map((task) => (
           <div className='tasks-div' key={task.taskID}>
             <div className='tasks-part'>
+              <div className='tasks-pri-deadline'>
+                <p>{priorityColor(task.priority)}</p>
+                <p className='task-deadline'><b>Deadline: </b>{task.deadline}</p>
+              </div>
               <p className='name'><b>{task.taskName}</b></p>
               <p className='details'>{task.taskDetails}</p>
-              <p className='details'>{task.priority}</p>
-              <p className='details'>{task.deadline}</p>
             </div>
             <DeleteTask taskID={task.taskID} />
           </div>

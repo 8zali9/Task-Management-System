@@ -1,40 +1,44 @@
+@font-face {
+    font-family: 'Agdasima';
+    src: url('/Agdasima/Agdasima-Regular.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
     height: 100%;
-    /* font-family:Georgia, 'Times New Roman', Times, serif; */
 }
 
-.toast-msg{
+.toast-msg {
     display: flex;
     align-items: center;
-    color:#ccd5ae;
+    color: #6c757d;
 }
 
 *::-webkit-scrollbar {
     width: 12px;
-  }
-  
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     background: black;
-  }
-  
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: lightslategrey;
     border-radius: 8px;
     border: 3px solid black;
-  }
+}
 
-  /* Head */
+/* Head */
 
-header{
+header {
     width: 100%;
     position: fixed;
-    background-color: #ccd5ae;
+    background-color: #343a40;
     z-index: 1;
 }
 
-nav{
+nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -44,27 +48,27 @@ nav{
     z-index: 1;
 }
 
-a{
+a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
-button{
+button {
     display: block;
     background-color: transparent;
     border: none;
 }
 
-.sidebar-toggle-btn{
+.sidebar-toggle-btn {
     color: white;
 }
 
-.brand-div{
+.brand-div {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-  
+
 .logo-tm {
     height: 55px;
     width: 90px;
@@ -74,7 +78,7 @@ button{
     border-radius: 4px;
 }
 
-.nav-side{
+.nav-side {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,11 +90,11 @@ button{
     color: #1b1420ee;
 }
 
-.navbar{
+.navbar {
     display: flex;
     flex-direction: column;
     position: fixed;
-    background-color: #ccd5ae;
+    background-color: #343a40;
     width: 145px;
     height: 100vh;
     transition: 0.3s ease;
@@ -100,13 +104,13 @@ button{
     gap: 45vh;
 }
 
-.nav-up-links{
+.nav-up-links {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.signlog-btn{
+.signlog-btn {
     display: flex;
     background-color: #1b1420;
     color: white;
@@ -117,33 +121,44 @@ button{
     justify-content: center;
     transition: 0.2s ease;
     font-size: 17px;
+    border: 2px solid #1b1420;
 }
 
-.signlog-btn:hover{
-    align-items: center;
-    border: 1px solid white;
-    background-color: white;
-    color: #1b1420;
+.signlog-btn:hover {
+    border-color: white;
 }
 
-.hide-navd-btn{
+.hide-navd-btn {
     display: flex;
     width: 20%;
+    font-size: larger;
+    font-weight: bolder;
     margin-left: 120px;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    background-color: transparent;
+    border: 3px solid transparent;
     color: white;
 }
 
-.navbar.shown{
+.hide-navd-btn:hover {
+    border-right-color: white;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+
+}
+
+.navbar.shown {
     position: fixed;
-    background-color: #1b1420;
+    background-color: #6c757d;
     width: 150px;
     margin-left: -96px;
     transition: 0.3s ease;
 }
 
-.nav-div{
+.nav-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -153,25 +168,25 @@ button{
     border-radius: 4px;
 }
 
-.nav-div:hover{
+.nav-div:hover {
     background-color: #ffffff13;
 }
 
-.nav-selected-btn{
+.nav-selected-btn {
     background-color: #ffffff52;
 }
 
-.nav-link-name{
+.nav-link-name {
     font-size: 15px;
     color: white;
 }
 
-.nav-icon{
+.nav-icon {
     color: white;
     font-size: 17px;
 }
 
-.auth-btns{
+.auth-btns {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -195,9 +210,11 @@ button{
     0% {
         color: white;
     }
+
     50% {
         color: #2c55779d;
     }
+
     100% {
         color: lightslategrey;
     }
@@ -224,7 +241,7 @@ button{
     margin-left: 10px;
 }
 
-.syn-searchbar{
+.syn-searchbar {
     width: 105vh;
     height: 40px;
     border-radius: 4px;
@@ -237,16 +254,16 @@ button{
     padding-left: 10px;
 }
 
-input{
+input {
     padding: 2px;
     margin-left: 5px;
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
-.syn-searchbar:focus{
+.syn-searchbar:focus {
     border-color: lightgray;
 }
 
@@ -265,17 +282,17 @@ input:focus{
     margin-bottom: 10px;
 }
 
-.synsb-below{
+.synsb-below {
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-self:center;
+    justify-self: center;
     font-size: smaller;
     gap: 5px;
     margin-bottom: 10px;
 }
 
-.syn-content{
+.syn-content {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -287,7 +304,7 @@ input:focus{
     margin-bottom: 70px;
 }
 
-.synaptron-chat-content{
+.synaptron-chat-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -295,7 +312,7 @@ input:focus{
     color: lightgray;
 }
 
-.logo-syn{
+.logo-syn {
     /* position:absolute; */
     font-size: 100px;
     margin-top: 10px;
@@ -310,7 +327,7 @@ input:focus{
     margin-bottom: 15px;
 }
 
-.syn-div{
+.syn-div {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -318,69 +335,87 @@ input:focus{
 
 /* Home page */
 
-.home-pg, .profile-pg, .groups-pg, .tasks-pg{
+.home-pg,
+.profile-pg,
+.groups-pg,
+.tasks-pg {
     display: flex;
     padding-top: 100px;
     margin-left: 200px;
 }
 
-.home-pg{
+.home-pg {
     flex-direction: column;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-.logout-btn{
+.logout-btn {
+    display: flex;
     background-color: rgb(219, 56, 56);
     color: white;
     padding: 10px;
+    border: 2px solid rgb(219, 56, 56);
     border-radius: 4px;
     width: 70px;
     height: 35px;
     margin-top: 10px;
+    transition: 0.2s ease;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-btn:hover {
+    background-color: white;
+    border-color: rgb(219, 56, 56);
+    color: rgb(219, 56, 56);
 }
 
 /* Profile Page, Tasks Page */
 
-.user-details, .task-details, .group-details{
-    color:#1b1420;
+.user-details,
+.task-details,
+.group-details {
+    color: #1b1420;
     width: 80%;
     height: 50%;
     padding: 20px;
     gap: 30px;
 }
 
-.user-div, .tasks-div{
+.user-div,
+.tasks-div {
     border-radius: 4px;
     border: 2px solid rgba(119, 114, 114, 0.37);
 }
 
-.pg-heading{
+.pg-heading {
     color: #1b1420;
 }
 
 /* Profile Page */
 
-.user-div{
+.user-div {
     padding: 20px;
 }
 
-.pg-head{
+.pg-head {
     width: 100%;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
 }
 
-.profile-pg-btns{
+.profile-pg-btns {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-.account-delete-section{
+.account-delete-section {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -390,21 +425,21 @@ button{
     border-radius: 2px;
 }
 
-.account-delete-div{
+.account-delete-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.account-delete-info{
+.account-delete-info {
     gap: 2px;
     padding: 10px;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.164);
 }
 
-.del-acc-btn{
+.del-acc-btn {
     display: flex;
     align-items: center;
     background-color: rgb(219, 56, 56);
@@ -418,7 +453,7 @@ button{
 
 /* Tasks Page */
 
-.tasks-div{
+.tasks-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -426,13 +461,13 @@ button{
     margin-bottom: 20px;
 }
 
-.delete-task{
+.delete-task {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.delete-form-btn{
+.delete-form-btn {
     font-size: 18px;
     padding-left: 7px;
     padding-right: 7px;
@@ -446,14 +481,23 @@ button{
     border-radius: 50%;
 }
 
-.delete-form-btn:hover{
+.tasks-pri-deadline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.delete-form-btn:hover {
     border: 1px solid rgba(179, 179, 179, 0.575);
     background-color: rgba(0, 0, 0, 0.158);
 }
 
 /* Update Form */
 
-.general-form-pg{
+.general-form-pg {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -469,7 +513,7 @@ button{
     z-index: 1;
 }
 
-.general-form{
+.general-form {
     display: flex;
     flex-direction: column;
     border: 2px solid silver;
@@ -481,17 +525,17 @@ button{
     border-radius: 4px;
 }
 
-.date-input{
+.date-input {
     background-color: transparent;
     width: 160px;
     color: white;
 }
 
-.account-delete-form{
+.account-delete-form {
     border-color: rgb(228, 54, 54);
 }
 
-.general-form-input{
+.general-form-input {
     border: 2px solid grey;
     padding: 8px;
     height: 16px;
@@ -506,11 +550,11 @@ button{
     border-color: white;
 }
 
-::placeholder{
+::placeholder {
     color: silver;
 }
 
-.general-form-input-range-div{
+.general-form-input-range-div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -518,11 +562,11 @@ button{
     font-weight: bold;
 }
 
-.general-form-btns-div{
+.general-form-btns-div {
     width: 250px;
 }
 
-.general-form-btn{
+.general-form-btn {
     background-color: white;
     color: #1b1420;
     font-size: 17px;
@@ -535,12 +579,12 @@ button{
     margin-top: 10px;
 }
 
-.cancel-btn{
+.cancel-btn {
     background-color: #1b1420;
     color: white;
 }
 
-.general-form-btn:hover{
+.general-form-btn:hover {
     background-color: #1b1420;
     color: white;
     border-color: white;
@@ -548,60 +592,58 @@ button{
 
 /* Login page */
 
-.login-pg{
+.login-pg {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 170px;
 }
 
-.signup-pg{
+.signup-pg {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 150px;
 }
 
-legend{
+legend {
     margin-bottom: 18px;
 }
 
-.login-form{
+.login-form,
+.signup-form {
     display: flex;
     flex-direction: column;
-    border: 3px solid #ccd5ae;
+    border: 3px solid #6c757d;
     gap: 20px;
     padding: 50px;
     width: 300px;
+    border-radius: 4px;
+}
+
+.login-form {
     height: 300px;
-    border-radius: 4px;
 }
 
-.signup-form{
-    display: flex;
-    flex-direction: column;
-    border: 3px solid #ccd5ae;
-    gap: 20px;
-    padding: 50px;
-    width: 300px;
+.signup-form {
     height: 350px;
-    border-radius: 4px;
 }
 
-.form-input{
+.form-input {
     border: 2px solid silver;
     padding: 8px;
     height: 16px;
     border-radius: 4px;
     transition: 0.2s ease;
+    color: #6c757d;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #ccd5ae;
+    border-color: #6c757d;
 }
 
-.login-form-btn{
+.login-form-btn {
     background-color: #1b1420;
     color: white;
     font-size: 17px;
@@ -613,13 +655,13 @@ legend{
     margin-top: 10px;
 }
 
-.login-form-btn:hover{
+.login-form-btn:hover {
     background-color: white;
     color: #1b1420;
     border-color: #1b1420;
 }
 
-.not-have-acc{
+.not-have-acc {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -627,7 +669,7 @@ legend{
     border-top: 1px solid #3c2468b2;
 }
 
-.nha-link{
+.nha-link {
     color: #1b1420;
     text-decoration: underline;
 }
@@ -635,26 +677,26 @@ legend{
 /* SMALL SCREENS */
 
 @media only screen and (max-width: 767px) {
-    nav{
+    nav {
         margin-right: 10px;
         margin-left: 10px;
     }
 
-    .navbar.shown{
+    .navbar.shown {
         margin-left: -200px;
     }
 
     /* login pg */
 
-    .login-form{
+    .login-form {
         border: none;
     }
 
-    .not-have-acc{
+    .not-have-acc {
         align-items: center;
     }
 
-    legend{
+    legend {
         display: flex;
         justify-content: center;
     }

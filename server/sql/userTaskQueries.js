@@ -24,9 +24,10 @@ const qAddTask = `
 // @desc    update a task
 const qUpdateTask = `
     update task
-    set taskID = ?,
-        taskName = ?,
+    set taskName = ?,
         taskDetails = ?,
+    where
+        taskID = ?
         userID = ?
 `;
 

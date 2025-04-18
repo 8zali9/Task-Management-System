@@ -11,7 +11,7 @@ import { ToggleNavBtnsContext } from '../../utils/ToggleNavBtns'
 
 async function fetchUserName(){
     const name = await localStorage.getItem('userName')
-    const nameParts = name.split(' ');
+    const nameParts = name?.split(' ');
     const firstName = nameParts[0];
     return firstName.charAt(0).toUpperCase() + firstName.charAt(1);
 }

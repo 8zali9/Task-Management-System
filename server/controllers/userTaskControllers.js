@@ -62,7 +62,6 @@ const addTask = async (req, res) => {
     [taskName, taskDetails, priority, deadline, userID],
     (err, result) => {
       if (err) {
-        console.log(err);
         res.status(400).json({ error: "Cannot add the task." });
       } else {
         const tID = result.taskID;

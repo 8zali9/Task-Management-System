@@ -72,7 +72,7 @@ export default function ProfilePage() {
           <div className='account-delete-section'>
             <div className='account-delete-div'>
               <p>Account Termination</p>
-              <button className='del-acc-btn' onClick={handleDelAccountFormToggle}>Delete Account</button>
+              <button className='del-acc-btn logout-btn' onClick={handleDelAccountFormToggle}>Delete Account</button>
             </div>
             <div className='account-delete-info'>
               <FaInfoCircle />
