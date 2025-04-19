@@ -1,12 +1,11 @@
 const express = require("express");
-const dotenv = require("dotenv");
+require("dotenv").config();
 const cors = require("cors");
-const userRoutes = require("./routes/userRoutes");
-const userTaskRoutes = require("./routes/userTaskRoutes");
-dotenv.config();
+const userRoutes = require("./v1/routes/userRoutes");
+const userTaskRoutes = require("./v1/routes/userTaskRoutes");
 const cookieParser = require("cookie-parser");
-const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
-const connection = require("./config/connect_db");
+const { notFound, errorHandler } = require("./v1/middlewares/errorMiddleware");
+const { connect } = require("./v1/config/connect_db");
 const port = process.env.PORT || 2525;
 
 const app = express();
@@ -30,13 +29,14 @@ app.use("/api/usertasks", userTaskRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-connection.connect((err) => {
-  if (err) {
-    console.log("Error connecting the Database");
-  } else {
-    console.log("Database Connection Successful");
-    app.listen(port, () => {
-      console.log("Listening on Port:", port);
-    });
-  }
+connect()
+  .then(() => {
+    console.log("db");
+  })
+  .catch((error) => {
+    console.log("error db", error);
+  });
+
+app.listen(port, () => {
+  console.log("Listening on Port:", port);
 });

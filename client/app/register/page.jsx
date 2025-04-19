@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import ToastMsg from '../utils/ToastMsg'
 import { useState } from 'react';
+import config from '../config'
 
 export default function Register() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function Register() {
   const handleAuthSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:2424/api/user', {
+    const response = await fetch(`${config.url}/user`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userName, userEmail, userPassword }),

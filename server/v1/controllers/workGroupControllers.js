@@ -1,6 +1,6 @@
 const mysql2 = require("mysql2");
 require("dotenv").config();
-const db = require("../config/connect_db");
+const { db } = require("../config/connect_db");
 const {
   qGetAllworkGroupsOfUser,
   qGetAworkGroupOfUser,

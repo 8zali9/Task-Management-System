@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int          @id @default(autoincrement())
+  name      String
+  email     String       @unique
+  password  String
+  tasks     Task[]       @relation("UserTask")
+  teamLead  Team?        @relation("UserTeamLead")
+  teamUser  TeamUser[]   @relation("TeamUser")
+  invitor   TeamInvite[] @relation("UserInvitor")
+  invitee   TeamInvite[] @relation("UserInvitee")
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Task {
+  id        Int        @id @default(autoincrement())
+  name      String
+  details   String?
+  creatorId Int
+  creator   User       @relation("UserTask", fields: [creatorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  taskTeam  TeamTask[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Team {
+  id         Int          @id @default(autoincrement())
+  name       String
+  motive     String?
+  teamLeadId Int          @unique
+  lead       User         @relation("UserTeamLead", fields: [teamLeadId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teamUser   TeamUser[]   @relation("UsersTeam")
+  teamTask   TeamTask[]
+  teamInvite TeamInvite[] @relation("TeamInvitation")
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+}
+
+model TeamInvite {
+  id          Int      @id @default(autoincrement())
+  message     String?
+  teamId      Int
+  invitorId   Int
+  inviteeId   Int
+  teamInvite  Team     @relation("TeamInvitation", fields: [teamId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userInvitor User     @relation("UserInvitor", fields: [invitorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userInvitee User     @relation("UserInvitee", fields: [inviteeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamUser {
+  userId    Int
+  teamId    Int
+  user      User     @relation("TeamUser", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  team      Team     @relation("UsersTeam", fields: [teamId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, teamId])
+}
+
+model TeamTask {
+  teamId    Int
+  taskId    Int
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([teamId, taskId])
+}

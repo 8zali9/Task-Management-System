@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../utils/TokenProvider'
 import { useState, useContext } from 'react';
 import ToastMsg from '../utils/ToastMsg'
+import config from '../config'
 
 export default function Login() {
   const { setTokenIsPresent } = useContext(AuthContext);
@@ -25,7 +26,7 @@ export default function Login() {
   const handleAuthSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:2424/api/user/signin', {
+    const response = await fetch(`${config.url}/user/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userEmail, userPassword }),

@@ -6,6 +6,7 @@ import ToastMsg from '../../utils/ToastMsg'
 import { useRouter } from 'next/navigation'
 import { AuthContext } from '../../utils/TokenProvider'
 import { ToggleFormContext } from '../../utils/ToggleForm';
+import config from '../../config'
 
 async function updateLocalStorage(){
   localStorage.setItem('userID', "");
@@ -21,7 +22,7 @@ export default function Logout() {
   const handleLogoutFormSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:2424/api/user/signout`, {
+    const response = await fetch(`${config.url}/user/signout`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',

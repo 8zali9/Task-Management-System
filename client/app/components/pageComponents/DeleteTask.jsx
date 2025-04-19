@@ -5,6 +5,7 @@ import { MdRemoveDone } from "react-icons/md";
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import ToastMsg from '../../utils/ToastMsg'
+import config from '../../config'
 
 export default function DeleteTask({ taskID }) {
   const router = useRouter()
@@ -15,7 +16,7 @@ export default function DeleteTask({ taskID }) {
   const handleDeleteFormSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:2424/api/usertasks/${userID}/${taskID}`, {
+    const response = await fetch(`${config.url}/usertasks/${userID}/${taskID}`, {
       method: 'DELETE',
       headers: { 
         'Content-Type': 'application/json',

@@ -8,6 +8,7 @@ import Logout from '../components/pageComponents/Logout'
 import { FaRegEdit, FaInfoCircle } from "react-icons/fa";
 import DeleteUser from '../components/pageComponents/DeleteUser';
 import next from 'next';
+import config from '../config'
 
 export default function ProfilePage() {
   const userID = localStorage.getItem('userID')
@@ -25,7 +26,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:2424/api/user/${userID}`, {
+        const response = await fetch(`${config.url}/user/${userID}`, {
           method: 'GET',
           headers: {
             // 'Authorization': `Bearer ${token}`,

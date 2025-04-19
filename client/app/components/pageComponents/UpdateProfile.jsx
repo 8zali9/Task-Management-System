@@ -6,6 +6,7 @@ import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import ToastMsg from '../../utils/ToastMsg'
+import config from '../../config'
 
 function updateLocalStorage(name, email){
   localStorage.setItem('userName', name);
@@ -28,7 +29,7 @@ export default function UpdateProfile() {
   const handleUpdateFormSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:2424/api/user/${userID}`, {
+    const response = await fetch(`${config.url}/user/${userID}`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',

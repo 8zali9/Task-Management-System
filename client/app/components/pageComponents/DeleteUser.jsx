@@ -6,6 +6,7 @@ import { ToggleFormContext } from '../../utils/ToggleForm';
 import { toast } from 'react-toastify';
 import ToastMsg from '../../utils/ToastMsg'
 import { useState, useContext } from 'react';
+import config from '../../config'
 
 async function updateLocalStorage(){
   localStorage.setItem('userID', "");
@@ -25,7 +26,7 @@ export default function DeleteUser() {
   const handleDeleteFormSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:2424/api/user/${userID}`, {
+    const response = await fetch(`${config.url}/user/${userID}`, {
       method: 'DELETE',
       headers: { 
         'Content-Type': 'application/json',

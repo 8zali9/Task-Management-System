@@ -1,7 +1,7 @@
 const mysql2 = require("mysql2");
 require("dotenv").config();
 const asyncHandler = require("express-async-handler");
-const db = require("../config/connect_db");
+const { db } = require("../config/connect_db");
 const hashPassword = require("../utils/hashPassword");
 const matchPassword = require("../utils/matchPassword");
 const generateToken = require("../utils/generateToken");
@@ -83,33 +83,37 @@ const getUser = (req, res) => {
 
 // @route   POST /api/user
 // @desc    create/register user
-const createUser = asyncHandler(async (req, res) => {
+const createUser = async (req, res) => {
   const { userName, userEmail, userPassword } = req.body;
 
-  const hashedPassword = await hashPassword(userPassword); // hashing password
+  try {
+    const hashedPassword = await hashPassword(userPassword); // hashing password
 
-  db.query(
-    qCreateUser,
-    [userName, userEmail, hashedPassword],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res
-          .status(400)
-          .json({ error: "Cannot Register the user. Incorrect Credentials." });
-      } else {
-        const userID = result.userID;
-        generateToken(res); // generating token
-        res.status(201).json({
-          message: "User Registered Successfully.",
-          userID,
-          userName,
-          userEmail,
-        });
+    db.query(
+      qCreateUser,
+      [userName, userEmail, hashedPassword],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(400).json({
+            error: "Cannot Register the user. Incorrect Credentials.",
+          });
+        } else {
+          const userID = result.userID;
+          generateToken(res); // generating token
+          res.status(201).json({
+            message: "User Registered Successfully.",
+            userID,
+            userName,
+            userEmail,
+          });
+        }
       }
-    }
-  );
-});
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // @route   PUT /api/user/:id
 // @desc    update user

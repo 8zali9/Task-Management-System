@@ -6,6 +6,7 @@ import { ToggleFormContext } from '../../utils/ToggleForm';
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import ToastMsg from '../../utils/ToastMsg'
+import config from '../../config'
 
 export default function AddTask() {
   const { handleAddTaskFormToggle } = useContext(ToggleFormContext)
@@ -22,7 +23,7 @@ export default function AddTask() {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:2424/api/usertasks/${userID}`, {
+    const response = await fetch(`${config.url}/usertasks/${userID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

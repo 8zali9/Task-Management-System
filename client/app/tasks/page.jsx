@@ -7,6 +7,7 @@ import ToastMsg from '../utils/ToastMsg'
 import { IoMdAddCircleOutline } from "react-icons/io";
 import AddTask from '../components/pageComponents/AddTask'
 import DeleteTask from '../components/pageComponents/DeleteTask'
+import config from '../config'
 
 function fetchUserID(){
   const userID = localStorage.getItem('userID')
@@ -32,7 +33,7 @@ export default function TasksPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:2424/api/usertasks/${userID}`, {
+        const response = await fetch(`${config.url}/usertasks/${userID}`, {
           method: 'GET',
           headers: {
             // 'Authorization': `Bearer ${token}`,
